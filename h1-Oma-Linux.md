@@ -23,7 +23,7 @@
 
 ## a) Linuxin asentaminen
 
-Tämä asennus suoritettiin lauantaina 18.1.2025 alkaen klo 14.30. Käytössäni oli oma itse koottu pöytäkone, jossa on Windows-käyttöjärjestelmä. Asennus tapahtui virtuaalikoneelle Oracle VirtualBoxissa, jonka asensin tietokoneelleni tätä tehtävää tehdessä.
+Tämä asennus suoritettiin lauantaina 18.1.2025 alkaen klo 14.30. Käytössäni oli oma itse koottu pöytäkone, jossa on Windows 11 -käyttöjärjestelmä. Muita koneen ominaisuuksia: Intel(R) Core(TM) i3-9100F CPU @ 3.60GHz 3.60 GHz, RAM 8,00 Gt. Asennus tapahtui virtuaalikoneelle Oracle VirtualBoxissa, jonka asensin tietokoneelleni tätä tehtävää tehdessä.
 
 ### Valmistelu
 
