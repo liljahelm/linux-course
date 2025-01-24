@@ -7,7 +7,7 @@
 - SSH etähallinta: ssh + käyttäjänimi + palvelin, scp -r ... (kopioi turvallisesti kansion etälaitteeseen)
 - Käyttöohjeet: man
 - Muuta: tabulaattori x2 näyttää mahdollisuudet mitä kirjoittaa seuraavaksi, tabulaattori kerran täyttää komennon loppuun jos mahdollista (suositeltavaa käyttää mm. tiedostonimissä), history näyttää ajetut komennot
-- Tärkeitä hakemistoja: / (root), /home/ (kaikkien käyttäjien kotihakemistot), /home/username/ (käyttäjän kotihakemisto, ainoa paikka missä käyttäjä voi pysyvästi säilyttää tietoa), /etc/ (kaikki järjestelmän asetukset, tekstinä), /media/ (poistettavissa oleva media), /var/log/ (järjestelmän laajuiset lokit)
+- Tärkeitä hakemistoja: /, /home/, /home/username/, /etc/, /media/, /var/log/
 - Admin-komennot: sudo
 - Pakettien hallinta: apt-get update jne.
 
@@ -60,7 +60,56 @@ Käynnistin ohjelman komennolla htop, jonka jälkeen ohjelma avautui. Näkymän 
 
 
 
-## c) FHS
+## c) FHS, 24.1.2025 klo 18.15
+
+### Tärkeitä hakemistoja:
+
+- /home/username/: Käyttäjän oma kotihakemisto, ainoa paikka missä käyttäjä voi pysyvästi säilyttää tietoa. Omalla kohdallani hakemisto on /home/liljat/, ja virtuaalikoneen terminaali avaa joka kerta oletuksena tämän hakemiston. Komento ls näyttää hakemiston sisällön. Komennolla cd Documents/ tarkastelin kyseisen kansion sisältöä, ja siellä oli aiemmin luomani tekstitiedosto TESTI.TXT, jonka olin siirtänyt sinne komennolla mv TESTI.TXT Documents/.
+
+![image](https://github.com/user-attachments/assets/da1f9e6c-f923-45d3-8d20-67c821bc2f4f)
+
+
+- /home/: Sisältää kaikkien käyttäjien kotihakemistot. Tähän hakemistoon pääsin omasta kotihakemistostani komennolla cd .., ja hakemiston sisällön näin komennolla ls. Hakemisto sisälsi vain oman hakemistoni (liljat), koska muita käyttäjiä ei ole luotu.
+
+![image](https://github.com/user-attachments/assets/59f97b5c-da28-4081-87a3-cb5210a5f193)
+
+
+- /: Root eli juurihakemisto on tiedostojärjestelmän ylin taso. /home/-hakemistosta pääsin root-hakemistoon tutulla komennolla cd .., ja sisältö näkyi komennolla ls. Juurihakemistossa näkyi jo valmiina seuraavat kolme tärkeää hakemistoa.
+
+![image](https://github.com/user-attachments/assets/1eb6dcfd-7773-4f7d-bec9-00cd8abf0744)
+
+
+- /etc/: Kaikki järjestelmän laajuiset asetukset tekstitiedostoina. Juurihakemistosta tänne pääsi komennolla cd etc.
+
+![image](https://github.com/user-attachments/assets/20015f6b-1732-4e35-a1d9-13c7097b7952)
+
+Valitsin kohdan aliases havainnollistamisen kohteeksi. Yritin ensin avata tätä komennolla cd aliases, mutta kyseessä olikin tekstitiedosto, ja sitä pääsi tarkastelemaan komennolla less aliases.
+
+![image](https://github.com/user-attachments/assets/71b8b40b-2c79-4d54-8098-42ac942fd3cd)
+
+
+![image](https://github.com/user-attachments/assets/f2263ab6-0b7e-4858-8671-36c77a382f14)
+
+
+- /media/: Poistettavissa oleva media. Juurihakemistosta pääsi tänne komennolla cd media. Hakemistossa ei ollut mitään, koska mitään mediaa ei ole lisätty.
+
+![image](https://github.com/user-attachments/assets/8ac8e3b1-31a3-4ceb-8a36-5ef3bd179cb8)
+
+- /var/log/: Järjestelmän laajuiset lokit. Komento cd /var/log/ vei suoraan hakemistoon.
+
+![image](https://github.com/user-attachments/assets/43e771a8-5a3b-4c55-8a0f-11fb1eeb9b3a)
+
+Kokeilin, mitä hakemisto cups sisältää komennolla cd cups. Sisältä löytyi ainakin tekstitiedostoja, joista kokeilin avata ensimmäistä komennolla less access_log. Tiedosto ei auennut, ja terminaali ilmoitti ettei tähän ole oikeuksia. Päätin kokeilla samaa komentoa alkusanalla sudo, koska tiesin että se suorittaa komennon adminina, ja tämä onnistui.
+
+![image](https://github.com/user-attachments/assets/4aaf4dd6-52ab-4040-876c-d74a7f9b1ee2)
+![image](https://github.com/user-attachments/assets/08525b43-8b7b-4b8d-8af8-fbb4cce7d408)
+
+![image](https://github.com/user-attachments/assets/eba9d1cf-769f-47d1-ad4d-cf66c02ff9e6)
+
+
+
+
+(Lähde: Karvinen 2020, Command Line Basics Revisited: https://terokarvinen.com/2020/command-line-basics-revisited/?fromSearch=command%20line%20basics%20revisited)
 
 
 ## d) The Friendly M
