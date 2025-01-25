@@ -112,13 +112,32 @@ Kokeilin, mitä hakemisto cups sisältää komennolla cd cups. Sisältä löytyi
 (Lähde: Karvinen 2020, Command Line Basics Revisited: https://terokarvinen.com/2020/command-line-basics-revisited/?fromSearch=command%20line%20basics%20revisited)
 
 
-## d) The Friendly M
+## d) The Friendly M, 25.1.2025 klo 13.57
+
+Tutustuin aluksi grep-komennon manuaaliin komennolla man grep. Ensimmäiseksi kokeilin komentoa grep -r, jonka pitäisi käydä läpi kaikki tiedostot kaikista hakemistoista. Syötin komennoksi grep -r tekstiä, koska tiesin, että sanan "tekstiä" pitäisi löytyä aiemmin luomastani tekstitiedostosta. Tämä onnistui.
+
+![kuva](https://github.com/user-attachments/assets/b887d7f8-da10-4d38-8fd9-27506c77ea07)
+
+Toiseksi kokeilin grep -c -komentoa, jonka pitäisi laskea, montako riviä täsmää hakusanaan. Aluksi komento ei toiminut, koska en ollut terminaalissa siinä hakemistossa, missä tekstitiedosto sijaitsi. Kun siirryin Documents-hakemistoon, komento grep -c 'tekstiä' TESTI.TXT toimi, ja palautti numeron 1. Hakusana ilmenee siis tiedostossa yhdellä rivillä.
+
+![kuva](https://github.com/user-attachments/assets/d8532439-9020-4e80-b36e-00d084904998)
 
 
-## e) Pipe
+## e) Pipe, 25.1.2025 klo 14.17
+
+Putkittamisessa komennot yhdistetään toisiinsa merkillä |. En suoraan osannut itse keksiä esimerkkiä putkittamisesta, joten hain apua netistä. FreeCodeCampin sivustolla oli listattu esimerkkejä putkittamisesta, joista kokeilin ensimmäistä, eli ls -l | wc -l. Alkuosa listaa hakemiston sisällön pitkässä muodossa, ja kun se putkitetaan jälkimmäiseen osioon, se laskee rivien määrän hakemistossa. Omassa juurihakemistossani on tämän perusteella 25 kohdetta.
+
+![kuva](https://github.com/user-attachments/assets/19863ac4-416f-420c-983b-6e4b35415b38)
+
+(Lähde: freeCodeCamp, How to Use Piping and Redirection in the Linux Terminal: https://www.freecodecamp.org/news/linux-terminal-piping-and-redirection-guide/)
 
 
-## f) Rauta
+## f) Rauta, 25.1.2025 klo 14.36
+
+Asensin ensin lshw:n komennolla sudo apt-get install -y lshw. 
+
+![kuva](https://github.com/user-attachments/assets/a20e873a-cedd-4933-ba10-4f3871758ce4)
+
 
 
 #### g) Vapaaehtoinen: Valitse muutama rivi lokeista. Tulkitse ja analysoi.
