@@ -134,12 +134,15 @@ Putkittamisessa komennot yhdistetään toisiinsa merkillä |. En suoraan osannut
 
 ## f) Rauta, 25.1.2025 klo 14.36
 
-Asensin ensin lshw:n komennolla sudo apt-get install -y lshw. 
+Asensin ensin lshw:n komennolla sudo apt-get install -y lshw. Tämän jälkeen ajoin komennon sudo lshw -short -sanitize saadakseni listauksen koneen raudasta.
 
 ![kuva](https://github.com/user-attachments/assets/a20e873a-cedd-4933-ba10-4f3871758ce4)
 
+Huomioni kiinnittyi ensimmäisenä prosessoriin, joka on sama kuin omassa tietokoneessani. Muistelen, että virtuaalikone käyttää virtualisoinnista huolimatta fyysisen koneen resursseja, joten havainto selittynee tällä. Kuitenkin monessa kohdassa listausta lukee myös vain "VirtualBox", ja oletan, että VirtalBox-ohjelma itsessään huolehtii näistä resursseista. Muistia näytti olevan 4 GB, eli saman verran mitä asennuksen yhteydessä määrittelin. 
 
+Tietokoneiden fyysiset ominaisuudet tarkemmin ovat itselleni vielä aika vieraita, joten en aluksi keksinyt muuta huomioitavaa edellä todetun lisäksi. Hain netistä tietoa lshw-komennosta. Täsmennys -short tarkoittaa lähteeni mukaan laitteistojen polkua, -sanitize poistaa arkaluontoiset tiedot näkymästä. (Lähde: https://www.geeksforgeeks.org/lshw-command-in-linux-with-examples/).
 
-#### g) Vapaaehtoinen: Valitse muutama rivi lokeista. Tulkitse ja analysoi.
-#### h) Vapaaehtoinen: Asenna jokin plugin micro-editorille ja kokeile sitä. Vaikkapa palettero, cheat tai runit.
+Listauksessa on eritelty tiedot laitteisiin, luokkiin ja kuvaukseen. Laite eli device ilmeisesti kertoo, mitä fyysisen laitteiston osaa tieto koskee, tästä en löytänyt netistä tarkempaa määritelmää. Class kertoo tiedon tyypin, esimerkiksi liittyykö se muistiin, prosessoriin vai verkkolaitteisiin. Kuvaukseen on määritelty tarkemmin laitteisto. Lisäksi listauksen vasen laita kertoo laitteiston polun. 
+
+Löytämäni tieto internetissä käsitteli pääasiassa, mihin komentoa käytetään ja miksi, mutta en löytänyt sellaista tietoa, joka olisi auttanut minua analysoimaan listausta paremmin. Fyysiseen laitteistoon liittyvät artikkelit mm. esittelivät käsitteitä, joihin olenkin jo tutustunut. Kuitenkin ymmärsin sen, että komennon ja siihen liitettävien eri täsmennyksien avulla voidaan saada hyvinkin yksityiskohtaista tietoa laitteistosta, kun sitä tarvitaan.
 
