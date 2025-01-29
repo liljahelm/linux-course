@@ -38,6 +38,8 @@ Asensin Apache2-weppipalvelimen jo oppitunnin aikana. Testasin nettiselaimella p
 
 ## b) Lokit 29.1.2025 klo 13.45
 
+### Ongelmatilanne
+
 Yritin ensin katsoa lokien muodostumista komennoilla "sudo tail /var/log/apache2/access.log" ja "tail -f /var/log/apache2/access.log", mutta ne näyttivät vain eilisen päivän tapahtumia. Yritin ladata localhost-sivua uudelleen sekä shift+refresh-painikkeiden yhdistelmällä, sekä sulkemalla koko selaimen ja avaamalla sitten localhostin uudelleen. Tämä ei auttanut.
 
 Katsoin komennolla "sudo tail /var/log/apache2/error.log", muodostuuko sinne uusia lokeja. Täällä näkyi ajantasaiset lokimerkinnät. Tämän päivän ensimmäinen merkintä vaikuttaisi tekstin perusteella olevan ilmoitus siitä, että kaikki toimii normaalisti: "configured, resuming normal operations". 
@@ -51,6 +53,8 @@ Tarkistin komennolla "sudo systemctl status apache2", mikä on weppipalvelimen t
 Jonkin aikaa selasin netissä keskustelupalstoja ja muita lähteitä, ja yritin löytää ratkaisua. Mitään hyödyllistä ei löytynyt, enkä luultavasti osannut hakea tarpeeksi osuvilla hakusanoilla. Viimeinen ajatukseni oli, että ehkä oma testisivuni ei jostain syystä toimi tässä yhteydessä, ja sen sijaan default-sivua voisi kokeilla. Olin aikaisemmin ottanut sen pois käytöstä komennolla "sudo a2dissite 000-default.conf", joten nyt palautin sen käyttöön komennolla "sudo a2ensite 000-default.conf". Palvelin piti vielä uudelleenkäynnistää komennolla "sudo systemctl restart apache2", ja tämän jälkeen lokit alkoivat heti toimimaan. 
 
 En ole täysin varma, miksi tämä auttoi, ja jälkikäteen hain vielä netistä tietoa tarkemmilla hakusanoilla. Yhdellä keskustelupalstalla (https://stackoverflow.com/questions/68364578/why-do-http-requests-to-host-localhost-not-appear-in-apache2-access-logs) kuvattiin samankaltainen ongelma, jonka tapauksessa ilmeisesti asetukset estivät lokitietojen tallentumisen oikeaan paikkaan. Olen vielä niin aloittelija, etten ymmärtänyt selitystä kovinkaan syvällisesti, mutta pinnallisella tasolla se auttoi hieman hahmottamaan asiaa. 
+
+### Toimivat lokit
 
 Jatkaessani harjoitusta latasin localhost-sivun pari kertaa uudestaan, ja sain komennolla "tail -f /var/log/apache2/access.log" lokit talteen.
 
