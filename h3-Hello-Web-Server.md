@@ -78,10 +78,14 @@ Lähteeni mukaan statuskoodin jälkeinen kohta kertoo pyydetyn tiedoston koon, m
 
 Lopuksi rivillä on viittaava linkki, jos sitä on mahdollista käyttää, sekä tietoa clientin nettiselaimesta ja käyttöjärjestelmästä. Viittaava linkki kertoo, miten käyttäjä navigoi sivustolle. Omalla rivilläni ei mielestäni oli viittaavaa linkkiä. Tähän lokitietoon oli muista tiedoista kirjattu Mozilla, mikä on virtuaalikoneen selain. X11 selittyi nopealla verkkohaulla ikkunointijärjestelmäksi (Wikipedia). Käyttöjärjestelmästä on mainittu Linux ja 64-bittinen versio. Toisella nopealla verkkohaulla kävi ilmi, että loput tiedot (rv, Gecko, Firerfox...) ovat selaimeen ja sen moottoriin liittyviä tarkennuksia (Wikipedia, mdn web docs).
 
-Lähteet:
+#### Lähteet:
+
 linuxconfig.org 2023, Linux Apache log analyzer: https://linuxconfig.org/linux-apache-log-analyzer
+
 Wikipedia, X Window System: https://en.wikipedia.org/wiki/X_Window_System
+
 Wikipedia, Gecko (software): https://en.wikipedia.org/wiki/Gecko_(software)
+
 Mdn web docs, Firefox user agent string reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent/Firefox
 
 
@@ -128,9 +132,11 @@ Lisäsin kieliattribuutin w3.org-sivuston ohjeen perusteella toiselle riville mu
 ![kuva](https://github.com/user-attachments/assets/eb1584e4-86d7-4f2a-bcce-7d6d1c833296)
 
 
-Lähteet:
+#### Lähteet:
 Karvinen 2012, Short HTML5 page: https://terokarvinen.com/2012/short-html5-page/
+
 W3C, Nu Html Checker: http://validator.w3.org/
+
 W3C 2021, Declaring language in HTML: https://www.w3.org/International/questions/qa-html-language-declarations
 
 
