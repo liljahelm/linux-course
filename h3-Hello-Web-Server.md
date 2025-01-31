@@ -115,7 +115,7 @@ Kävin katsomassa, mitkä sivut ovat päällä hakemistossa sites-enabled. Otin 
 Kokeilin toimivuutta hakemalla nettiselaimella "localhost", ja uusi asetettu sivu aukesi onnistuneesti. Sana "hattu" löytyi tehtävänannon mukaisesti asetustiedoston nimestä, ServerName-muuttujasta ja etusivun sisällöstä.
 
 
-## e) Validi HTML5-sivu
+## e) Validi HTML5-sivu, 31.1.2025 klo 18.23
 
 Kopioin lyhyen HTML-sivun rakenteen opettajan artikkelista, ja muokkasin tekstisisältöä hattu-sivulle sopivaksi. Testasin sisällön HTML-validaattorilla ja sain kaksi huomautusta: kieliattributti suositeltiin lisäämään, ja ilmoitusluontoisesti rivillä 5 oleva kenoviiva ei vaikuta mihinkään. 
 
