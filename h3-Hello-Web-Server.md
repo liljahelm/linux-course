@@ -47,24 +47,54 @@ Katsoin komennolla "sudo tail /var/log/apache2/error.log", muodostuuko sinne uus
 ![kuva](https://github.com/user-attachments/assets/9ded5908-2efb-47cc-8323-4ec67805a88d)
 
 
-
 Tarkistin komennolla "sudo systemctl status apache2", mikä on weppipalvelimen tila, ja se oli running. Testasin kuitenkin, jos uudelleenkäynnistys komennolla "sudo systemctl restart apache2" auttaisi ongelmaani, mutta tästä ei ollut hyötyä. Kokeilin myös päivittää index.html:n sisältöä, ja se kyllä päivittyi localhost-sivulle, mutta ei auttanut lokien muodostumisessa. 
 
 Jonkin aikaa selasin netissä keskustelupalstoja ja muita lähteitä, ja yritin löytää ratkaisua. Mitään hyödyllistä ei löytynyt, enkä luultavasti osannut hakea tarpeeksi osuvilla hakusanoilla. Viimeinen ajatukseni oli, että ehkä oma testisivuni ei jostain syystä toimi tässä yhteydessä, ja sen sijaan default-sivua voisi kokeilla. Olin aikaisemmin ottanut sen pois käytöstä komennolla "sudo a2dissite 000-default.conf", joten nyt palautin sen käyttöön komennolla "sudo a2ensite 000-default.conf". Palvelin piti vielä uudelleenkäynnistää komennolla "sudo systemctl restart apache2", ja tämän jälkeen lokit alkoivat heti toimimaan. 
 
-En ole täysin varma, miksi tämä auttoi, ja jälkikäteen hain vielä netistä tietoa tarkemmilla hakusanoilla. Yhdellä keskustelupalstalla (https://stackoverflow.com/questions/68364578/why-do-http-requests-to-host-localhost-not-appear-in-apache2-access-logs) kuvattiin samankaltainen ongelma, jonka tapauksessa ilmeisesti asetukset estivät lokitietojen tallentumisen oikeaan paikkaan. Olen vielä niin aloittelija, etten ymmärtänyt selitystä kovinkaan syvällisesti, mutta pinnallisella tasolla se auttoi hieman hahmottamaan asiaa. 
+En ole täysin varma, miksi tämä auttoi, ja jälkikäteen hain vielä netistä tietoa tarkemmilla hakusanoilla. Yhdellä keskustelupalstalla (https://stackoverflow.com/questions/68364578/why-do-http-requests-to-host-localhost-not-appear-in-apache2-access-logs) kuvattiin samankaltainen ongelma, jonka tapauksessa ilmeisesti asetukset estivät lokitietojen tallentumisen oikeaan paikkaan. Aloittelijana en ymmärtänyt selitystä kovinkaan tarkasti, mutta jokseenkin hahmotan, että oikeaan paikkaan ei oltu kohdistettu oikeita määrityksiä.
+
 
 ### Toimivat lokit
 
-Jatkaessani harjoitusta latasin localhost-sivun pari kertaa uudestaan, ja sain komennolla "tail -f /var/log/apache2/access.log" lokit talteen.
+Jatkaessani harjoitusta latasin localhost-sivun pari kertaa uudestaan (Ctrl + refresh-painike), ja sain komennolla "tail -f /var/log/apache2/access.log" lokit talteen.
 
 ![kuva](https://github.com/user-attachments/assets/a16afc0b-1c8a-47c4-aa65-806fa43ef1d1)
 
 
+### Ensimmäisen rivin analyysi 
+
+Ensimmäisen lokitiedon rivillä oli ensin IP-osoite 127.0.0.1, joka on laitteen oma loopback osoite IPv4-verkossa, eli laite on tehnyt pyynnön itselleen. Access-lokissa IP-osoite on clientin, eli sen joka ottaa yhteyttä palvelimeen. Tässä tapauksessa client oma laite, kuten edellä todettu.
+(Lähteet: GeeksforGeeks 2025, What is local host? https://www.geeksforgeeks.org/what-is-local-host/. ITtrip, Mastering Access Log Analysis in Linux: A Comprehensive Guide: https://en.ittrip.xyz/linux/linux-access-logs.)
+
+Kaksi seuraavaa kohtaa oli merkitty viivoilla, toinen kohta ilmeisesti tavallisestikin on tyhjä, ja kolmanteen kohtaan tulee tietoa vain, jos HTTP autentikointia on käytetty (linuxconfig.org). 
+
+Seuraavaksi rivillä on päivämäärä ja aika, milloin pyyntö on tapahtunut.
+
+Tämän jälkeen rivillä on itse pyyntö, tässä tapauksessa esimerkiksi "GET / HTTP/1.1". "GET" ilmaisee, mitä HTTP-metodia on käytetty, ja jälkimmäinen osio kertoo mitä HTTP-protokollaa on käytetty (linuxconfig.org). Tarkensin tätä vielä ChatGPT:ssä, ja sen mukaan tämä merkintä on tapa pyytää palvelimen kotisivua käyttämällä HTTP/1.1-protokollaa. En löytänyt suoraan samaa tietoa internetlähteistä, mutta tekemäni pyyntö kyllä kohdistui pavlelimen kotisivulle, mikä vahvistaisi väitteen. 
+
+Seuraava kohta on statuskoodi, kuten 200 289. Statuskoodi palautetaan palvelimelta clientille, ja 200-alkuinen koodi tarkoittaa onnistumista (linuxconfig.org). 
+
+Lähteeni mukaan statuskoodin jälkeinen kohta kertoo pyydetyn tiedoston koon, mutta omissa lokitiedoissani se oli tyhjä. En löytänyt tietoa mistä tämä voisi kertoa, enkä myöskään keksinyt itse mahdollista syytä. 
+
+Lopuksi rivillä on viittaava linkki, jos sitä on mahdollista käyttää, sekä tietoa clientin nettiselaimesta ja käyttöjärjestelmästä. Viittaava linkki kertoo, miten käyttäjä navigoi sivustolle. Omalla rivilläni ei mielestäni oli viittaavaa linkkiä. Tähän lokitietoon oli muista tiedoista kirjattu Mozilla, mikä on virtuaalikoneen selain. X11 selittyi nopealla verkkohaulla ikkunointijärjestelmäksi (Wikipedia). Käyttöjärjestelmästä on mainittu Linux ja 64-bittinen versio. Toisella nopealla verkkohaulla kävi ilmi, että loput tiedot (rv, Gecko, Firerfox...) ovat selaimeen ja sen moottoriin liittyviä tarkennuksia (Wikipedia, mdn web docs).
+
+Lähteet:
+linuxconfig.org 2023, Linux Apache log analyzer: https://linuxconfig.org/linux-apache-log-analyzer
+Wikipedia, X Window System: https://en.wikipedia.org/wiki/X_Window_System
+Wikipedia, Gecko (software): https://en.wikipedia.org/wiki/Gecko_(software)
+Mdn web docs, Firefox user agent string reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent/Firefox
 
 
+### Toisen rivin analyysi
+
+Alkuosa oli GET-sanaan asti sama, kuin yllä. Seuraavaksi pyynnössä luki favicon.ico, ja favicon tarkoittaa pientä kuvaketta verkkosivuilla, joka näkyy mm. välilehdellä sivun ollessa auki (lähde: https://en.wikipedia.org/wiki/Favicon). Sitä on siis pyydetty localhost-sivulta, ja siellä ei sellaista ole. Seuraavaksi rivillä onkin tuttu 404-alkuinen koodi, mikä indikoi epäonnistumista. Kuvaketta ei siis ole löytynyt. 
+
+Tällä rivillä on edellisessä osiossa mainittu viittaava linkki, eli oman tulkintani mukaan tästä käy ilmi, että käyttäjäjänä olen navigoinut sivulle suoraan rivillä näkyvän osoitteen avulla. Loput rivin tiedot ovat samat, kuin ylemmällä rivillä.
 
 
 ## c) Uusi name based virtual host
+
+
+
 ## e) Validi HTML5-sivu
 ## f) Curl
