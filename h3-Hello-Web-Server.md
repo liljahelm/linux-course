@@ -92,9 +92,46 @@ Alkuosa oli GET-sanaan asti sama, kuin yllä. Seuraavaksi pyynnössä luki favic
 Tällä rivillä on edellisessä osiossa mainittu viittaava linkki, eli oman tulkintani mukaan tästä käy ilmi, että käyttäjäjänä olen navigoinut sivulle suoraan rivillä näkyvän osoitteen avulla. Loput rivin tiedot ovat samat, kuin ylemmällä rivillä.
 
 
-## c) Uusi name based virtual host
+## c) Uusi name based virtual host, 31.1.2025 klo 17.52
 
+Aloitin uuden name based virtual hostin luomisen virtuaalikoneen terminaalissa käyttäen opettajan laatimaa ohjesivustoa apuna. Aluksi tarkistin varmuudeksi, olihan minulla hakemisto nimellä "sites-available" polussa /etc/apache2. Tämän jälkeen annoin komennon "sudoedit /etc/apache2/sites-available/hattu.example.com.conf", ja kirjoitin avautuneeseen tekstieditoriin tarvittavat tiedot.
+
+![kuva](https://github.com/user-attachments/assets/649ef418-4403-48d5-980a-1e4bf9546ca2)
+
+Komennolla "sudo a2ensite hattu.example.com" kytkin virtual hostin päälle, ja komento "sudo systemctl restart apache2" käynnisti palvelimen uudelleen. 
+
+Loin uuden nettisivun normaalina käyttäjänä komennolla "mkdir -p /home/liljat/publicsites/hattu.example.com/", ja tarkistin, että se näkyy publicsites-hakemistossa komennolla "ls". 
+
+![kuva](https://github.com/user-attachments/assets/aa19256c-898b-4481-ac64-795304091c88)
+
+Lisäsin hakemistoon index.html-tiedoston komennolla "echo hattu > /home/liljat/publicsites/hattu.example.com/index.html".
+
+![kuva](https://github.com/user-attachments/assets/dd3f57c3-d16e-493a-a594-323ba02451cc)
+
+Kävin katsomassa, mitkä sivut ovat päällä hakemistossa sites-enabled. Otin komennolla "a2dissite 000-default.conf lilja.example.com.conf" muut sivut pois päältä. 
+
+![kuva](https://github.com/user-attachments/assets/b79773c3-72e0-4a16-8e69-54da37c1a263)
+
+Kokeilin toimivuutta hakemalla nettiselaimella "localhost", ja uusi asetettu sivu aukesi onnistuneesti. Sana "hattu" löytyi tehtävänannon mukaisesti asetustiedoston nimestä, ServerName-muuttujasta ja etusivun sisällöstä.
 
 
 ## e) Validi HTML5-sivu
+
+Kopioin lyhyen HTML-sivun rakenteen opettajan artikkelista, ja muokkasin tekstisisältöä hattu-sivulle sopivaksi. Testasin sisällön HTML-validaattorilla ja sain kaksi huomautusta: kieliattributti suositeltiin lisäämään, ja ilmoitusluontoisesti rivillä 5 oleva kenoviiva ei vaikuta mihinkään. 
+
+![kuva](https://github.com/user-attachments/assets/5921b8d1-080a-46b5-8fbd-59abfcf7e738)
+
+Lisäsin kieliattribuutin w3.org-sivuston ohjeen perusteella toiselle riville muodossa "<html lang="fi">", ja poistin rivin 5 kenoviivan. Muutosten jälkeen validaattori ei antanut uusia virheilmoituksia tai varoituksia. Alla kuvakaappaukset lopullisesta koodista ja sivustosta.
+
+![kuva](https://github.com/user-attachments/assets/cda32952-12e8-4754-acdd-f1ffaf869c8a)
+
+![kuva](https://github.com/user-attachments/assets/eb1584e4-86d7-4f2a-bcce-7d6d1c833296)
+
+
+Lähteet:
+Karvinen 2012, Short HTML5 page: https://terokarvinen.com/2012/short-html5-page/
+W3C, Nu Html Checker: http://validator.w3.org/
+W3C 2021, Declaring language in HTML: https://www.w3.org/International/questions/qa-html-language-declarations
+
+
 ## f) Curl
