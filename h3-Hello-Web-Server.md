@@ -140,4 +140,36 @@ W3C, Nu Html Checker: http://validator.w3.org/
 W3C 2021, Declaring language in HTML: https://www.w3.org/International/questions/qa-html-language-declarations
 
 
-## f) Curl
+## f) Curl, 1.2.2025 klo 16.30
+
+Curl-komennolla voidaan siirtää tietoa eri protokollilla (esim. HTTPS). Komento yhdistettynä url-osoitteeseen palauttaa sivuston HTML-sisällön, esimerkiksi omalla virtuaalikoneellani "curl localhost" näyttää edellisessä tehtävässä laaditun HTML-sisällön.
+
+![kuva](https://github.com/user-attachments/assets/36ad6b10-b66a-4e52-a10f-86e195cec5a6)
+
+Etsin tietoa "curl -I" -komennosta antamalla komennon "man curl". Manuaalista selvisi, että komento tuo vain sivuston otsikkotiedot.
+
+![kuva](https://github.com/user-attachments/assets/4df101e2-2311-4505-bd9e-aa212fe97475)
+
+Komento palautti ensin rivin, jossa HTTP-protokolla kuvataan onnistuneella 200-alkuisella koodilla ja OK-ilmaisulla. Seuraavilla riveillä oli GMT-päivämäärä, käytetty serveri ja viimeisin muokkausajankohta. ETag eli entity tag on osa HTTP-protokollaa, ja mahdollistaa mm. verkon välimuistin validoinnin ja tehostaa välimuistin käyttöä. Jos verkkopalvelimen sisältö ei ole muuttunut, sen ei tarvitse lähettää täydellistä vastausta. (Wikipedia.)
+
+Accept-Ranges on otsikko, joka kertoo, että palvelin sallii myös osittaiset pyynnöt lähteestä, ja "bytes" kertoo yksikön, jolla määritellään tämä alue. Content-Length ilmaisee lähetetyn viestin koon tavuissa. Vary kertoo, mitkä osat pyynnöstä vaikuttivat vastauksen sisältöön. Accept-Encoding kertoo, minkä enkoodauksen lähettäjä voi ymmärtää. Content-Type ilmaisee alkuperäisen mediatyypin ennen sisällön enkoodausta. (mdn.)
+
+
+#### Lähteet:
+GeeksforGeeks 2024, curl Command in Linux with Examples: https://www.geeksforgeeks.org/curl-command-in-linux-with-examples/
+
+Wikipedia 2024, HTTP ETag: https://en.wikipedia.org/wiki/HTTP_ETag
+
+mdn web docs, Accept-Ranges: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Ranges
+
+mdn web docs, Content-Length: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length
+
+mdn web docs, Vary: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary
+
+mdn web docs, Accept-Encoding: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding
+
+mdn web docs, Content-Type: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
+
+
+
+
