@@ -142,7 +142,7 @@ W3C 2021, Declaring language in HTML: https://www.w3.org/International/questions
 
 ## f) Curl, 1.2.2025 klo 16.30
 
-Curl-komennolla voidaan siirtää tietoa eri protokollilla (esim. HTTPS). Komento yhdistettynä url-osoitteeseen palauttaa sivuston HTML-sisällön, esimerkiksi omalla virtuaalikoneellani "curl localhost" näyttää edellisessä tehtävässä laaditun HTML-sisällön.
+Curl-komennolla voidaan siirtää tietoa eri protokollilla (esim. HTTPS). Komento yhdistettynä url-osoitteeseen palauttaa sivuston HTML-sisällön, esimerkiksi omalla virtuaalikoneellani "curl localhost" näyttää edellisessä tehtävässä laaditun HTML-sisällön. (GeeksforGeeks 2024.)
 
 ![kuva](https://github.com/user-attachments/assets/36ad6b10-b66a-4e52-a10f-86e195cec5a6)
 
