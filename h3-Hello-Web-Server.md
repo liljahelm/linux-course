@@ -14,9 +14,8 @@ Lähde: The Apache Software Foundation 2023, Name-based Virtual Host Support: ht
 
 ### Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address
 - Apache mahdollistaa useampien verkkotunnusten toiminnan yhden IP-osoitteen alla
-- Oletusnettisivun korvaaminen: echo "Default"|sudo tee /var/www/html/index.html
-- Uuden hostin lisäys: sudoedit /etc/apache2/sites-available/pyora.example.com.conf, cat /etc/apache2/sites-available/pyora.example.com.conf, sudo a2ensite pyora.example.com, sudo systemctl restart apache2
-- Nettisivun luominen normaalina käyttäjänä: mkdir -p /home/xubuntu/publicsites/pyora.example.com/, echo pyora > /home/xubuntu/publicsites/pyora.example.com/index.html
+- Uuden hostin lisäys: sudoedit /etc/apache2/sites-available/x.example.com.conf, sudo a2ensite x.example.com, sudo systemctl restart apache2
+- Nettisivun luominen normaalina käyttäjänä: mkdir -p /home/user/publicsites/x.example.com/, echo x > /home/user/publicsites/x.example.com/index.html
 - Testaus: curl
 
 Lähde: Karvinen 2018, Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address: https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/
