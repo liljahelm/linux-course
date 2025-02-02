@@ -104,7 +104,7 @@ Aloitin uuden name based virtual hostin luomisen virtuaalikoneen terminaalissa k
 
 Komennolla "sudo a2ensite hattu.example.com" kytkin virtual hostin päälle, ja komennolla "sudo systemctl restart apache2" käynnistin palvelimen uudelleen. 
 
-Loin uuden nettisivun normaalina käyttäjänä komennolla "mkdir -p /home/liljat/publicsites/hattu.example.com/", ja tarkistin, että se näkyy publicsites-hakemistossa komennolla "ls". 
+Loin uuden hakemiston normaalina käyttäjänä komennolla "mkdir -p /home/liljat/publicsites/hattu.example.com/", ja tarkistin, että se näkyy publicsites-hakemistossa komennolla "ls". 
 
 ![kuva](https://github.com/user-attachments/assets/aa19256c-898b-4481-ac64-795304091c88)
 
