@@ -88,7 +88,7 @@ Asennus tapahtui nopeasti, ja sen päätteeksi sain myös palvelimen IP-osoittee
 ![kuva](https://github.com/user-attachments/assets/2332735d-6a77-46f5-9b14-ac3dacd09709)
 
 
-## b) Alkutoimet virtuaalipalvelimella, 8.2.2025 klo 12.20
+## b) Alkutoimet virtuaalipalvelimella, 8.2.2025 klo 12.20-13.18
 
 ### Kirjautuminen
 
