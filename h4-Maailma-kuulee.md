@@ -23,10 +23,10 @@ e) Kotisivut palvelimelle
 - Apachen testisivu korvataan omalla HTML-sivulla
 
 f) Palvelimen ohjelmien päivitys
-- SSH-yhteys avataan virtuaalipalvelimen pääkäyttäjän tunnuksilla, ja haetaan tiedot saatavista päivityksistä sekä asennetaan ne
-- Annetaan tietoturvapäivitykset
+- SSH-yhteys avataan virtuaalipalvelimen pääkäyttäjän tunnuksilla
+- Haetaan tiedot saatavista päivityksistä sekä asennetaan ne, ml. tietoturvapäivitykset
 
-#### Lähde
+### Lähteet
 Lehto 2022, Teoriasta käytäntöön pilvipalvelimen avulla (h4): https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/
 
 
@@ -40,10 +40,11 @@ Lehto 2022, Teoriasta käytäntöön pilvipalvelimen avulla (h4): https://susann
 - Ohjelmistot pitää päivittää tietoturvan vuoksi
 - Julkista palvelinta varten tulee tehdä reikä palomuuriin esim. komennolla "sudo ufw allow 80/tcp"
 
-#### Lähde
+### Lähteet
 
 Karvinen 2017, First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS: 
 https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/
+
 
 ## Alustus
 
@@ -118,7 +119,7 @@ Palasin komennolla "exit" paikalliselle virtuaalikoneelleni ja kokeilin kirjautu
 
 ![kuva](https://github.com/user-attachments/assets/b7235b2d-ab84-4b1c-8891-d8ef4facbae3)
 
-#### Root-tunnuksen sulkeminen
+### Root-tunnuksen sulkeminen
 
 Suljin root-tunnuksen komennoilla "sudo usermod --lock root" ja "sudo mv -nv /root/.ssh /root/DISABLED-ssh/". Poistin root-tunnuksen ssh-kirjautumisen käytöstä komennolla "sudoedit /etc/ssh/sshd_config", ja muokkasin tekstieditorissa kohdasta tekstin "PermitRootLogin yes" tekstiksi "PermitRootLogin no".
 
@@ -128,12 +129,45 @@ Suljin root-tunnuksen komennoilla "sudo usermod --lock root" ja "sudo mv -nv /ro
 
 Lopuksi annoin komennon "sudo service ssh restart", jotta uudet määritykset tulevat käyttöön.
 
-#### Päivitykset
+### Päivitykset
 
 Alustin päivitykset jälleen komennolla "sudo apt-get update", ja asensin saatavilla olevat päivitykset komennoilla "sudo apt-get upgrade" ja "sudo apt-get dist-upgrade".
 
+### Lähteet
 
-## c) Weppipalvelimen asennus virtuaalipalvelimelle
+Karvinen 2017, First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS: 
+https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/
 
+Lehto 2022, Teoriasta käytäntöön pilvipalvelimen avulla (h4): https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/
+
+
+## c) Weppipalvelimen asennus virtuaalipalvelimelle, 8.2.2024 klo 13.40
+
+### Asentaminen
+
+Asensin Apache2-weppipalvelimen omalle virtuaalipalvelimelleni komennolla "sudo apt-get install apache2" ja tarkistin asennuksen jälkeen palvelimen tilan komennolla "sudo systemctl status apache2". Palvelin oli aktiivisena.
+
+![kuva](https://github.com/user-attachments/assets/229f4617-72f0-4bf1-a86a-387563100d1f)
+
+Tein toisen reiän palomuuriin komennolla "sudo ufw allow 80/tcp". 
+
+### Testaus
+
+Testasin palvelimen toimivuutta kirjoittamalla virtuaalikoneeni nettiselaimeen palvelimen IP-osoitteen, ja testisivu aukesi onnistuneesti.
+
+![kuva](https://github.com/user-attachments/assets/42101125-b64c-4e13-a0a8-20855a8ccdc0)
+
+### Testisivun korvaaminen
+
+Korvasin testisivun komennolla echo "Hei ja tervetuloa!"|sudo tee /var/www/html/index.html. Muutos näkyi sekä virtuaalikoneen selaimella että oman puhelimeni selaimella, eli sivu näkyy julkisesti.
+
+![kuva](https://github.com/user-attachments/assets/f9597d55-299d-4b5e-9da9-e96be0bc5399)
+
+### Lähteet
+
+Tehtävänanto h4
+
+Karvinen 2017, First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS: 
+https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/
 
 
