@@ -5,9 +5,9 @@
 ### Teoriasta käytäntöön pilvipalvelimen avulla
 
 a) Pilvipalvelimen vuokraus ja asennus
-- Monet eri alustat tarjoavat kuukausihintaan vuokrattavia virtuaalipalvelimia eli "droplets" eri laajuuksissa ja eri hintaan
+- Monet eri alustat tarjoavat kuukausihintaan vuokrattavia virtuaalipalvelimia eli "droplets" eri laajuuksissa
 - Asennusta varten valitaan oikea käyttöjärjestelmä, haluttu palvelun laajuus, virtuaalikoneen ominaisuudet, sijainti, autentikointimenetelmä ja koneiden määrä
-- Domainnimi vuokrataan ja ohjataan se osoittamaan omalle virtuaalipalvelimelle
+- Domain-nimen voi myös hankkia vuokraamalla ja ohjata osoittamaan omalle virtuaalipalvelimelle
 
 d) Palvelin suojaan palomuurilla
 - Palomuuri asennetaan komennolla "sudo apt-get install ufw"
@@ -18,24 +18,24 @@ e) Kotisivut palvelimelle
 - Ensin luodaan virtuaalipalvelimelle käyttäjä komennolla "sudo adduser" ja tehdään siitä pääkäyttäjä
 - SSH yhteys avataan ja tieto saatavilla olevista päivityksistä päivitetään
 - Juuri lukitaan ja virtuaalikoneelle asennetaan tietoturvapäivitykset
-- Virtuaalikoneelle ladataan Apache-palvelin
-- Palomuuriin tehdään toinen reikä porttia varten
+- Virtuaalikoneelle ladataan Apache-palvelin ja palomuuriin tehdään toinen reikä porttia varten
 - Apachen testisivu korvataan omalla HTML-sivulla
 
 f) Palvelimen ohjelmien päivitys
 - SSH-yhteys avataan virtuaalipalvelimen pääkäyttäjän tunnuksilla
 - Haetaan tiedot saatavista päivityksistä sekä asennetaan ne, ml. tietoturvapäivitykset
+  
 
 ### Lähteet
 Lehto 2022, Teoriasta käytäntöön pilvipalvelimen avulla (h4): https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/
+ 
 
 
 ### First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS
-- Uuden palvelimen luomisen yhteydessä valitaan datakeskus lähellä asiakkaiden sijaintia
 - Ensimmäinen kirjautuminen tehdään root-käyttäjänä komennolla "ssh root@10.0.0.1", malli-IP-osoitteen tilalle oma IP-osoite
-- Vahvat salasanat ovat tärkeitä
+- Vahvat salasanat ovat erittäin tärkeitä
 - Palomuuriin tulee tehdä reikä SSH:ta varten ennen sen käyttöönottoa
-- Koneelle luodaan uusi käyttäjä ja sitä testataan uudessa paikallisessa terminaalissa ennen, kuin suljetaan viimeisin shell etähostilla
+- Koneelle luodaan uusi käyttäjä ja sitä testataan paikallisessa terminaalissa
 - Root-käyttäjä lukitaan ja SSH-kirjautuminen sillä estetään
 - Ohjelmistot pitää päivittää tietoturvan vuoksi
 - Julkista palvelinta varten tulee tehdä reikä palomuuriin esim. komennolla "sudo ufw allow 80/tcp"
@@ -64,7 +64,7 @@ Annetuista vaihtoehdoista lähin datakeskus Helsingistä katsottuna on Amsterdam
 
 ![kuva](https://github.com/user-attachments/assets/1b49b7a4-731c-43c2-a004-7365616081d7)
 
-Virtuaalikoneeni käyttöjärjestelmä on Debian 12 64-bit, joten valitsin käyttöjärjestelmäksi myös tässä.
+Virtuaalikoneeni käyttöjärjestelmä on Debian 12 64-bit, joten valitsin sen käyttöjärjestelmäksi myös tässä.
 
 ![kuva](https://github.com/user-attachments/assets/4b5c7bf3-fd5e-4b22-b90f-812b6e2b4a1e)
 
@@ -74,17 +74,17 @@ Jätin "Droplet type"-kohtaan valinnan basic, ja kuvauksenkin mukaan sen pitäis
 
 Palvelu tarjosi ylimääräistä tallennustilaa ja automaattisia varmuuskopioita, mutta kurssin ohjeistuksen mukaisesti näille ei pitäisi olla tarvetta, eli en valinnut niitä.
 
-Varmennustavaksi valitsin SSH:n, sillä edellisen oppitunnin perusteella se on salasanaa tietoturvallisempi vaihtoehto, ja sen käyttöönotto vaikutti ymmärrettävältä. Valitsin kohdan "Add SSH Key", ja palvelu antoi ohjeet ja tarvittavat komennot avaimien luomista varten. 
+Varmennustavaksi valitsin SSH:n, sillä oppitunnilla läpikäytyjen tietojen perusteella se on salasanaa tietoturvallisempi vaihtoehto. Lisäksi käyttöönotto vaikutti selkeältä, ja uskoin sen onnistuvan suhteellisen helposti. Valitsin kohdan "Add SSH Key", ja palvelu antoi ohjeet ja tarvittavat komennot avaimien luomista varten. 
 
 Avasin virtuaalikoneen terminaalin ja kokeilin komentoa "ssh-keygen", mutta sitä ei löytynyt. Ensin piti siis asentaa tämä komennolla "sudo apt-get install openssh-client", jota edeltävästi hain saatavilla olevat päivitykset komennolla "sudo apt-get update". Tämän jälkeen tehtävänannon ohjeen mukaisesti painoin tulevissa valinnoissa kolme kertaa enteriä. Asennus onnistui. Syötin vielä komennon "micro $HOME/.ssh/id_rsa.pub", joka avasi tekstieditorin, josta sain kopioitua julkisen avaimen ja liitettyä DigitalOceaniin. Annoin julkiselle avaimelle lopuksi nimen.
 
 ![kuva](https://github.com/user-attachments/assets/190c53dd-c892-47c9-acd2-2416e77cf1d1)
 
-Seuraavaksi DigitalOcean tarjosi lisää lisäpalveluita, joita en valinnut. Lopuksi jätin valinnat oletuksiksi, eli vain yksi virtuaalipalvelin, enkä muokannut sen nimeä. Loin dropletin klikkaamalla "Create Droplet".
+Seuraavaksi DigitalOcean tarjosi lisää lisäpalveluita, joita en valinnut. Loput valinnat jätin oletuksiksi, eli vain yksi virtuaalipalvelin, enkä muokannut sen nimeä. Loin dropletin klikkaamalla "Create Droplet".
 
 ![kuva](https://github.com/user-attachments/assets/dc1bf166-47af-4dad-a9a4-6bcdf950f46b)
 
-Asennus tapahtui nopeasti, ja sen päätteeksi sain myös palvelimen IP-osoitteen.
+Asennus tapahtui nopeasti, ja sen päätteeksi sain näkyviin palvelimen IP-osoitteen.
 
 ![kuva](https://github.com/user-attachments/assets/2332735d-6a77-46f5-9b14-ac3dacd09709)
 
@@ -113,7 +113,7 @@ Viimeistelin vaiheen komennolla "sudo adduser liljat sudo".
 
 ![kuva](https://github.com/user-attachments/assets/65b13cd6-3b15-4ba2-baf0-999874c7f216)
 
-Kopioin root:n ssh-asetukset myöhempää kirjautumista varten omalla uudella käyttäjällä komennoilla "sudo cp -rvn /root/.ssh/ /home/liljat/" ja "sudo chown -R liljat:liljat /home/liljat/"
+Kopioin root:n ssh-asetukset myöhempää omalla käyttäjällä kirjautumista varten komennoilla "sudo cp -rvn /root/.ssh/ /home/liljat/" ja "sudo chown -R liljat:liljat /home/liljat/"
 
 Palasin komennolla "exit" paikalliselle virtuaalikoneelleni ja kokeilin kirjautua palvelimelle omalla uudella käyttäjälläni komennolla "ssh liljat@178.62.233.5". Kirjautuminen onnistui.
 
@@ -121,7 +121,7 @@ Palasin komennolla "exit" paikalliselle virtuaalikoneelleni ja kokeilin kirjautu
 
 ### Root-tunnuksen sulkeminen
 
-Suljin root-tunnuksen komennoilla "sudo usermod --lock root" ja "sudo mv -nv /root/.ssh /root/DISABLED-ssh/". Poistin root-tunnuksen ssh-kirjautumisen käytöstä komennolla "sudoedit /etc/ssh/sshd_config", ja muokkasin tekstieditorissa kohdasta tekstin "PermitRootLogin yes" tekstiksi "PermitRootLogin no".
+Suljin root-tunnuksen komennoilla "sudo usermod --lock root" ja "sudo mv -nv /root/.ssh /root/DISABLED-ssh/". Poistin root-tunnuksen ssh-kirjautumisen käytöstä komennolla "sudoedit /etc/ssh/sshd_config", ja muokkasin tekstieditorissa kohdan "PermitRootLogin yes" tekstiksi "PermitRootLogin no".
 
 ![kuva](https://github.com/user-attachments/assets/5d85602f-ce7f-4f3b-b80a-0920a9d0c162)
 
