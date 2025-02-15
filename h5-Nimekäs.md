@@ -6,9 +6,11 @@ Seuraavat harjoitukset on tehty virtuaalikoneella, johon asennettiin käyttöjä
 
 Kaikki harjoitukset perustuvat tehtävänantoihin kevään 2025 Linux-palvelimet -kurssin sivustolla: https://terokarvinen.com/linux-palvelimet/.
 
-## a) Nimi, 15.2.2025 klo 14
+## a) Nimi, 15.2.2025 klo 14 
 
-Hankin itselleni domainnimen NameCheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hakeuduin NameCheapin sivustolle GitHubin Student Developer Packin linkin kautta, ja rekisteröidyin. Rekisteröityminen piti tehdä henkilökohtaisella sähköpostilla koulun sähköpostin sijaan. Alussa valitsin kohdan GitHub Pages Free siltä varalta, jos haluaisin myöhemmin hyödyntää nettisivun tekemistä GitHubin repositoryjen kautta. 
+Hankin itselleni domainnimen NameCheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hyödynsin tarvittavissa kohdissa Susanna Lehdon tehtäväraporttia ohjeena.
+
+Ensin hakeuduin NameCheapin sivustolle GitHubin Student Developer Packin linkin kautta, ja rekisteröidyin. Rekisteröityminen piti tehdä henkilökohtaisella sähköpostilla koulun sähköpostin sijaan. Alussa valitsin kohdan GitHub Pages Free siltä varalta, jos haluaisin myöhemmin hyödyntää nettisivun tekemistä GitHubin repositoryjen kautta. 
 
 ![kuva](https://github.com/user-attachments/assets/95f2716d-4671-412e-9b4f-5577b95b587e)
 
@@ -20,7 +22,7 @@ Lisäsin kaksi uutta A-tietuetta (A Record) oman virtuaalipalvelimeni IP-osoitte
 
 ![kuva](https://github.com/user-attachments/assets/d643b5cf-bddb-4739-b1fe-430637d5a15e)
 
-Viimeiseksi kokeilin hakea oman tietokoneeni selaimella sivua ````liljatatti.me````, ja sieltä avautui oikeasta IP-osoitteesta aiemmin luotu sivusto.
+Viimeiseksi kokeilin hakea oman tietokoneeni selaimella sivua ````liljatatti.me````, ja sieltä avautui oikeasta IP-osoitteesta aiemmin luotu sivusto, eli tehtävä onnistui.
 
 ![kuva](https://github.com/user-attachments/assets/a8692f67-f97b-4f26-a7f0-b334d18a49e0)
 
@@ -35,7 +37,50 @@ Cloudfare, DNS A record: https://www.cloudflare.com/learning/dns/dns-records/dns
 Wikipedia 2019, Time to Live: https://fi.wikipedia.org/wiki/Time_to_Live. Luettu 15.2.2025.
 
 
-## b) Name Based Virtual Host nimeen
+## b) Name Based Virtual Host, 15.2.2025 klo 14.50
+
+Aloitin luomaan uutta Name Based Virtual Hostia virtuaalipalvelimen terminaalissa, koska ajattelin, että palvelimelle tulevat sivut tulisi luoda siellä. Loin uuden tiedoston komennolla ````/etc/apache2/sites-available/liljatatti.me.conf````, ja tarkistin tekstieditoriin lisäämäni sisällön cat-komennolla.
+
+Jatkoin sivuston https://terokarvinen.com/2018/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/?fromSearch=name%20based ohjeen mukaisesti ja annoin komennon ````sudo a2ensite liljatatti.me````, ja sen jälkeen komennon ````sudo systemctl restart apache2```` käynnistääkseni palvelimen uudelleen. Sain kuitenkin seuraavan kuvan mukaisen virheilmoituksen.
+
+![kuva](https://github.com/user-attachments/assets/cf6cb48f-9006-4edf-a276-38c55647a3fc)
+
+Annoin kehotuksen mukaisen komennon ````systemctl status apache2.service````, ja sieltä selvisi, ettei Apache2-palvelin ole aktiivisena. 
+
+![kuva](https://github.com/user-attachments/assets/0be55294-efa7-40f3-afc5-9806b4fc8038)
+
+En saanut palvelinta käynnistettyä komennoilla ````systemctl start apache2````, vaan lopputulos oli sama kuin restart-komennon jälkeen. Annoin tämän jälkeen komennon ````sudo systemctl enable apache2```` ja status muuttui hieman.
+
+![kuva](https://github.com/user-attachments/assets/a646d70f-1b50-461c-a3eb-b2e59e696e64)
+
+
+Tässä kohtaa aloitin vaiheet alusta ja kokeilin poistua palvelimen terminaalista, ja palata uudelleen. Tässä vaiheessa statuskomento näytti, että Apache2-palvelin olisi päällä. Yritin taas komentoa ````sudo a2ensite...```` ja ````sudo systemctl restart apache2````, mutta lopputulos oli sama. 
+
+Komennolla ````sudo journalctl -xeu apache2.service```` sain seuraavat virheilmoitukset.
+
+![kuva](https://github.com/user-attachments/assets/1fce2975-b0b2-41b8-9106-a4d889746341)
+
+Error-logista löytyi komennolla ````sudo tail /var/log/apache2/error.log```` seuraava lokitieto. Ilmeisesti tämä syntyi, kun yritettiin uudelleenkäynnistystä.
+
+![kuva](https://github.com/user-attachments/assets/f3e25cd5-4ae9-4ffd-bd07-45192a9bdef7)
+
+
+En päässyt näillä tiedoilla eteenpäin joten päätin kokeilla hostin tekemistä virtuaalikoneeni terminaalissa. Aluksi palvelin oli aktiivinen, mutta lopputulos oli sama.
+
+![kuva](https://github.com/user-attachments/assets/16e98eaa-4fca-4f41-9acb-bcc6e4d7eb66)
+
+![kuva](https://github.com/user-attachments/assets/0f80e45d-1e43-4cba-ab1d-5d9e018be5a1)
+
+
+Käynnistin vielä virtuaalikoneen uudelleen ja annoin komennot ````sudo apt-get update```` ja ````sudo apt upgrade apache2````, jos päivityksistä olisi apua, mutta ei ollut.
+
+
+
+
+
+
+
+
 
 
 ## c) Kotisivu
