@@ -8,7 +8,7 @@ Kaikki harjoitukset perustuvat tehtävänantoihin kevään 2025 Linux-palvelimet
 
 ## a) Nimi, 15.2.2025 klo 14 
 
-Hankin itselleni domainnimen NameCheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hyödynsin tarvittavissa kohdissa Susanna Lehdon tehtäväraporttia ohjeena.
+Tarkoituksena oli hankkia julkinen domainnimi ja laittaa se osoittamaan omaan virtuaalikoneeseen. hHankin itselleni domainnimen NameCheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hyödynsin rekisteröitymisessä tarvittavissa kohdissa Susanna Lehdon tehtäväraporttia ohjeena.
 
 Ensin hakeuduin NameCheapin sivustolle GitHubin Student Developer Packin linkin kautta, ja rekisteröidyin. Rekisteröityminen piti tehdä henkilökohtaisella sähköpostilla koulun sähköpostin sijaan. Alussa valitsin kohdan GitHub Pages Free siltä varalta, jos haluaisin myöhemmin hyödyntää nettisivun tekemistä GitHubin repositoryjen kautta. 
 
@@ -39,7 +39,9 @@ Wikipedia 2019, Time to Live: https://fi.wikipedia.org/wiki/Time_to_Live. Luettu
 
 ## b) Name Based Virtual Host, 15.2.2025 klo 14.50
 
-Aloitin luomaan uutta Name Based Virtual Hostia virtuaalipalvelimen terminaalissa, koska ajattelin, että palvelimelle tulevat sivut tulisi luoda siellä. Loin uuden tiedoston komennolla ````/etc/apache2/sites-available/liljatatti.me.conf````, ja tarkistin tekstieditoriin lisäämäni sisällön cat-komennolla. Tässä vaiheessa sisältö vaikutti mielestäni virheettömältä, sillä olin huolellisesti tehnyt sen ohjeiden (Karvinen 2018) mukaan ja kopioinut tiedostopolut ilman kirjotusvirheitä.
+Tarkoituksena oli laittaa Name Based Virtual Host näkykmään uudessa nimessä. Aloitin luomaan uutta Name Based Virtual Hostia virtuaalipalvelimen terminaalissa, koska ajattelin, että palvelimelle tulevat sivut tulisi luoda siellä. Sivun olisi voinut luoda myös paikallisesti ja sitten kopioida palvelimelle.
+
+Loin uuden tiedoston komennolla ````/etc/apache2/sites-available/liljatatti.me.conf````, ja tarkistin tekstieditoriin lisäämäni sisällön cat-komennolla. Tässä vaiheessa sisältö vaikutti mielestäni virheettömältä, sillä olin huolellisesti tehnyt sen ohjeiden (Karvinen 2018) mukaan ja kopioinut tiedostopolut ilman kirjotusvirheitä.
 
 ### Ongelmatilanne
 
@@ -131,13 +133,15 @@ Linux Handbook, Linux File Permissions and Ownership Explained with Examples: ht
 
 ## c) Kotisivu, 16.2.2025 klo 15
 
-Olin aloittanut etusivun tekemisen suoraan palvelimelle. Päätin luoda muut sivut ensin paikallisesti virtuaalikoneella, jotta voisin testata toimivuutta ennen sivujen julkaisemista. Localhost-sivuni oli hakemistossa ````/var/www/html/````, ja sieltä löytyi jo valmiiksi index.html-tekstitiedosto. Lisäsin hakemistoon kaksi muuta tiedostoa, portfolio.html ja cv.html. Loin HTML-sisältöä lyhyesti, ja muodostin linkit sivujen välille.
+Tarkoituksena oli tehdä vähintään kolmen erillisen alasivun kotisivu. Sivujen muokkaamisen tulisi onnistua ilman pääkäyttäjän oikeuksia. 
 
-Kopioin nämä tiedostot virtuaalipalvelimelleni alla kuvassa näkyvällä komennolla. Tämä komento kopioi koko html-kansion kohteeseen, eli palvelimen kansioon ````publicsites````.
+Olin aikaisemmin aloittanut etusivun tekemisen suoraan palvelimelle. Päätin luoda muut sivut ensin paikallisesti virtuaalikoneella, jotta voisin testata toimivuutta ennen sivujen julkaisemista. Päätin hyödyntää localhost-sivuani, joka oli hakemistossa ````/var/www/html/````, ja sieltä löytyi jo valmiiksi index.html-tekstitiedosto. Lisäsin hakemistoon kaksi muuta tiedostoa, portfolio.html ja cv.html. Loin HTML-sisältöä lyhyesti, ja muodostin linkit sivujen välille. Testasin toimivuutta paikallisella selaimella, ja kaikki toimi toivotusti.
+
+Kopioin tiedostot virtuaalipalvelimelleni alla kuvassa näkyvällä komennolla. Tämä komento kuitenkin kopioi koko html-kansion kohteeseen, eli virtuaalipalvelimen kansioon ````publicsites````.
 
 ![kuva](https://github.com/user-attachments/assets/97a86e38-ac94-417b-9990-5b15dad96202)
 
-Virtuaalipalvelimeni tiedostoihin muodostui uusi html-niminen hakemisto, josta kopioin tiedostot hakemistoon ````liljatatti.me```` komennoilla ````cp portfolio.html /home/liljat/publicsites/liljatatti.me```` ja ````cp cv.html /home/liljat/publicsites/liljatatti.me````.
+Kuten yllä mainittu, virtuaalipalvelimeni tiedostoihin muodostui uusi html-niminen hakemisto, josta sitten kopioin tiedostot hakemistoon ````liljatatti.me```` komennoilla ````cp portfolio.html /home/liljat/publicsites/liljatatti.me```` ja ````cp cv.html /home/liljat/publicsites/liljatatti.me````.
 
 ![kuva](https://github.com/user-attachments/assets/bed80a30-fa9f-4c2d-9c4f-e97360c98c03)
 
@@ -157,13 +161,56 @@ Testasin sivut vielä HTML-validaattorilla. Aluksi etusivulta sain saman huomaut
 ![kuva](https://github.com/user-attachments/assets/b33e9528-3a10-4e22-807e-2b92eaeb34c8)
 ![kuva](https://github.com/user-attachments/assets/9e833a05-a4b2-4fbb-b4ef-4cf2df947cfd)
 
-
+Aikaa tähän vaiheeseen kului 45 minuuttia.
 
 ### Lähteet
 
-Tehtävänanto h5, https://terokarvinen.com/linux-palvelimet/
+Tehtävänanto h5: https://terokarvinen.com/linux-palvelimet/
 
-## d) Alidomainit
+HTML-validator: https://validator.w3.org
 
 
-## e) DNS-tiedot 
+## d) Alidomainit, 16.2.2025 klo 16.15
+
+Siirryin kirjautumaan NameCheapiin ja avasin sieltä Domain listin kautta ````Manage```` ja ````Advanced DNS````. Lisäsin uuden tietueen alla näkyvillä tiedoilla ja tallensin. 
+LÄHDE: https://www.namecheap.com/support/knowledgebase/article.aspx/9776/2237/how-to-create-a-subdomain-for-my-domain/
+
+![kuva](https://github.com/user-attachments/assets/ddfe9cec-34d0-4f5e-ac23-c7e251784a65)
+
+Hain selaimella ````linuxkurssi.liljatatti.me````, mutta sivua ei löydy. Loin myös toisen tietueen ````blog````, mutta sekään ei auennut. Päätin pitää taukoa ja odottaa hetken, jos päivittymisessä menisi hieman aikaa.
+
+Aikaa tässä vaiheessa oli kulunut 15 minuuttia.
+
+Klo 17 jatkoin tehtävän tekemistä. Oman tietokoneeni tai virtuaalikoneen Firefox- tai Google Chrome -selaimilla sivut eivät auenneet, mutta oman puhelimeni DuckDuckGo-sovelluksen selain avasi molemmilla alidomaineilla etusivuni onnistuneesti.
+
+![kuva](https://github.com/user-attachments/assets/0280fc4c-debb-44c1-9101-585bccb82f09)
+
+![kuva](https://github.com/user-attachments/assets/314811aa-2fe7-4876-90fc-ce3019d6029c)
+
+Tässä kohtaa jäi selvittämättä, mistä ongelma voisi johtua. Päätin palata asiaan taas myöhemmin.
+
+
+
+## e) DNS-tiedot, 16.2.2025 klo 16.30
+
+Host-komentoa käytetään kääntämään verkkotunnus IP-osoitteeksi ja päinvastoin. 
+LÄHDE: man host
+
+![kuva](https://github.com/user-attachments/assets/43d0312f-e044-4962-9dc9-4bf524d679ec) host liljatatti.me
+
+![kuva](https://github.com/user-attachments/assets/6e765dfa-b7f0-4a43-8fe0-6b7c677fe4c4) host namecheap.com
+
+![kuva](https://github.com/user-attachments/assets/7ef86de7-35e4-452f-9bbe-81c9bdaacd08) host helsingintarmo.fi
+
+Dig asennus dnsutils
+LÄHDE: https://askubuntu.com/questions/25098/how-do-i-install-dig
+
+Dig on työkalu, joka hakee DNS-tietoja ja näyttää vastaukset nimipalvelimelta, johon kysely tehtiin. Dig-komentoa käytetään mm. vianselvitykseen. Komentoon on mahdollista liittää useita eri valintoja ja täsmennyksiä. 
+LÄHDE: man dig
+
+![kuva](https://github.com/user-attachments/assets/259dc682-7e02-44c5-94bf-b69aa5a7b0cf) dig liljatatti.me
+
+
+
+
+
