@@ -129,10 +129,39 @@ Ask Ubuntu, How do you view file permissions? https://askubuntu.com/questions/52
 Linux Handbook, Linux File Permissions and Ownership Explained with Examples: https://linuxhandbook.com/linux-file-permissions/. Luettu 16.2.2025. 
 
 
-## c) Kotisivu
+## c) Kotisivu, 16.2.2025 klo 15
+
+Olin aloittanut etusivun tekemisen suoraan palvelimelle. Päätin luoda muut sivut ensin paikallisesti virtuaalikoneella, jotta voisin testata toimivuutta ennen sivujen julkaisemista. Localhost-sivuni oli hakemistossa ````/var/www/html/````, ja sieltä löytyi jo valmiiksi index.html-tekstitiedosto. Lisäsin hakemistoon kaksi muuta tiedostoa, portfolio.html ja cv.html. Loin HTML-sisältöä lyhyesti, ja muodostin linkit sivujen välille.
+
+Kopioin nämä tiedostot virtuaalipalvelimelleni alla kuvassa näkyvällä komennolla. Tämä komento kopioi koko html-kansion kohteeseen, eli palvelimen kansioon ````publicsites````.
+
+![kuva](https://github.com/user-attachments/assets/97a86e38-ac94-417b-9990-5b15dad96202)
+
+Virtuaalipalvelimeni tiedostoihin muodostui uusi html-niminen hakemisto, josta kopioin tiedostot hakemistoon ````liljatatti.me```` komennoilla ````cp portfolio.html /home/liljat/publicsites/liljatatti.me```` ja ````cp cv.html /home/liljat/publicsites/liljatatti.me````.
+
+![kuva](https://github.com/user-attachments/assets/bed80a30-fa9f-4c2d-9c4f-e97360c98c03)
+
+Jotta sivujen linkit toimisivat oikein, piti vielä muokata tekstitiedostoihin oikeat osoitteet linkkien kohdalle. Avasin tiedoston nano-editorilla ja vaihdoin osoitteet jokaiseen tiedostoon osoittamaan haluttuun paikkaan.
+
+![kuva](https://github.com/user-attachments/assets/9c923b57-6f7c-48ed-a600-079c902f76d8)
+
+![kuva](https://github.com/user-attachments/assets/09bd1d35-1b71-49a5-a49f-58ff80ba412b)'
+
+Kokeilin oman tietokoneeni selaimella toimivuutta, eikä ongelmia ilmennyt.
+
+![kuva](https://github.com/user-attachments/assets/eeedd7ae-e894-4db4-ac91-4967179a96b9)
+
+Testasin sivut vielä HTML-validaattorilla. Aluksi etusivulta sain saman huomautuksen kuin jossakin aiemmassa harjoituksessa, että kohdan ````<meta charset="utf-8" />```` kenoviiva on turha. Poistin sen heti kaikista tiedostoista, ja sen jälkeen kaikkien sivun tulos oli onnistunut, eli sivut ovat validia HTML5:a.
+
+![kuva](https://github.com/user-attachments/assets/2a5a34d1-4dc4-48e8-a7be-d4e8afee0ef2)
+![kuva](https://github.com/user-attachments/assets/b33e9528-3a10-4e22-807e-2b92eaeb34c8)
+![kuva](https://github.com/user-attachments/assets/9e833a05-a4b2-4fbb-b4ef-4cf2df947cfd)
 
 
 
+### Lähteet
+
+Tehtävänanto h5, https://terokarvinen.com/linux-palvelimet/
 
 ## d) Alidomainit
 
