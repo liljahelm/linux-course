@@ -113,6 +113,8 @@ Käynnistin Apachen uudelleen, ja sain nettisivulleni näkyviin aiemmin luomani 
 
 ![kuva](https://github.com/user-attachments/assets/7d34027c-8a1a-403f-90c4-697c3fe7c0d6)
 
+Aikaa tähän vaiheeseen kului 1,5 tuntia.
+
 
 ### Lähteet
 
@@ -128,6 +130,8 @@ Linux Handbook, Linux File Permissions and Ownership Explained with Examples: ht
 
 
 ## c) Kotisivu
+
+
 
 
 ## d) Alidomainit
