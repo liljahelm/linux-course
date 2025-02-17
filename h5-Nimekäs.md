@@ -6,11 +6,13 @@ Seuraavat harjoitukset on tehty virtuaalikoneella, johon asennettiin käyttöjä
 
 Kaikki harjoitukset perustuvat tehtävänantoihin kevään 2025 Linux-palvelimet -kurssin sivustolla: https://terokarvinen.com/linux-palvelimet/.
 
-## a) Nimi, 15.2.2025 klo 14 
+## a) Nimi
 
-Tarkoituksena oli hankkia julkinen domainnimi ja laittaa se osoittamaan omaan virtuaalikoneeseen. hHankin itselleni domainnimen NameCheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hyödynsin rekisteröitymisessä tarvittavissa kohdissa Susanna Lehdon tehtäväraporttia ohjeena.
+Aloitin tehtävän tekemisen 15.2.2025 klo 14.
 
-Ensin hakeuduin NameCheapin sivustolle GitHubin Student Developer Packin linkin kautta, ja rekisteröidyin. Rekisteröityminen piti tehdä henkilökohtaisella sähköpostilla koulun sähköpostin sijaan. Alussa valitsin kohdan GitHub Pages Free siltä varalta, jos haluaisin myöhemmin hyödyntää nettisivun tekemistä GitHubin repositoryjen kautta. 
+Tarkoituksena oli hankkia julkinen domainnimi ja laittaa se osoittamaan omaan virtuaalikoneeseen. hHankin itselleni domainnimen Namecheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hyödynsin rekisteröitymisessä tarvittavissa kohdissa Susanna Lehdon tehtäväraporttia ohjeena.
+
+Ensin hakeuduin Namecheapin sivustolle GitHubin Student Developer Packin linkin kautta, ja rekisteröidyin. Rekisteröityminen piti tehdä henkilökohtaisella sähköpostilla koulun sähköpostin sijaan. Alussa valitsin kohdan GitHub Pages Free siltä varalta, jos haluaisin myöhemmin hyödyntää nettisivun tekemistä GitHubin repositoryjen kautta. 
 
 ![kuva](https://github.com/user-attachments/assets/95f2716d-4671-412e-9b4f-5577b95b587e)
 
@@ -18,7 +20,7 @@ Tilaus onnistui ja pääsin jatkamaan kirjautumiseen ja tarpeellisten toimien te
 
 ![kuva](https://github.com/user-attachments/assets/07c06c77-57a1-4416-987b-3a025580e6a7)
 
-Lisäsin kaksi uutta A-tietuetta (A Record) oman virtuaalipalvelimeni IP-osoitteella. A-tietue on yksi olennaisimmista DNS-tietueista, ja se yhdistää IP-osoitteen annettuun domainnimeen (Cloudfare). Host-kohtiin valitsin ````@```` ja ````www````, jotta sivulle pääsee sekä suoraan muodossa ````liljatatti.me```` että www-muodossa ````www.liljatatti.me````. TTL eli Time To Live -kenttään valitsin 5 min, eli DNS-palvelin saa säilyttää tietuetta viisi minuuttia ennen, kuin sitä pitää pyytää uudelleen. Lyhyt TTL-aika mahdollistaa DNS-tietojen nopean päivittymisen, mutta lisäävät verkkoliikennettä. (Wikipedia.) Lopuksi tallensin tiedot.
+Lisäsin kaksi uutta A-tietuetta (A Record) oman virtuaalipalvelimeni IP-osoitteella. A-tietue on yksi olennaisimmista DNS-tietueista, ja se yhdistää IP-osoitteen annettuun domainnimeen (Cloudfare). Host-kohtiin valitsin ````@```` ja ````www````, jotta sivulle pääsee sekä suoraan muodossa ````liljatatti.me```` että www-muodossa ````www.liljatatti.me````. TTL eli Time To Live -kenttään valitsin 5 min, eli DNS-palvelin saa säilyttää tietuetta viisi minuuttia ennen, kuin sitä pitää pyytää uudelleen, toisin sanoen päivittää. Lyhyt TTL-aika mahdollistaa DNS-tietojen nopean päivittymisen, mutta lisäävät verkkoliikennettä. (Wikipedia.) Lopuksi tallensin tiedot.
 
 ![kuva](https://github.com/user-attachments/assets/d643b5cf-bddb-4739-b1fe-430637d5a15e)
 
@@ -37,9 +39,11 @@ Cloudfare, DNS A record: https://www.cloudflare.com/learning/dns/dns-records/dns
 Wikipedia 2019, Time to Live: https://fi.wikipedia.org/wiki/Time_to_Live. Luettu 15.2.2025.
 
 
-## b) Name Based Virtual Host, 15.2.2025 klo 14.50
+## b) Name Based Virtual Host
 
-Tarkoituksena oli laittaa Name Based Virtual Host näkykmään uudessa nimessä. Aloitin luomaan uutta Name Based Virtual Hostia virtuaalipalvelimen terminaalissa, koska ajattelin, että palvelimelle tulevat sivut tulisi luoda siellä. Sivun olisi voinut luoda myös paikallisesti ja sitten kopioida palvelimelle.
+Aloitin tehtävän tekemisen 15.2.2025 klo 14.50.
+
+Tarkoituksena oli saada Name Based Virtual Host näkykmään uudessa nimessä. Aloitin luomaan uutta Name Based Virtual Hostia virtuaalipalvelimen terminaalissa, koska ajattelin, että palvelimelle tulevat sivut tulisi luoda siellä. Sivun olisi voinut luoda myös paikallisesti ja sitten kopioida palvelimelle.
 
 Loin uuden tiedoston komennolla ````/etc/apache2/sites-available/liljatatti.me.conf````, ja tarkistin tekstieditoriin lisäämäni sisällön cat-komennolla. Tässä vaiheessa sisältö vaikutti mielestäni virheettömältä, sillä olin huolellisesti tehnyt sen ohjeiden (Karvinen 2018) mukaan ja kopioinut tiedostopolut ilman kirjotusvirheitä.
 
@@ -55,7 +59,7 @@ Annoin kehotuksen mukaisen komennon ````systemctl status apache2.service````, ja
 
 En saanut palvelinta käynnistettyä komennolla ````systemctl start apache2````, vaan lopputulos oli sama kuin restart-komennon jälkeen. 
 
-Jatkoin yrittämistä ja tässä kohtaa aloitin vaiheet alusta ja kokeilin poistua palvelimen terminaalista, ja palata uudelleen. Tässä vaiheessa statuskomento näytti, että Apache2-palvelin olisi päällä. Yritin taas komentoa ````sudo a2ensite...```` ja ````sudo systemctl restart apache2````, mutta lopputulos oli sama kuin aiemmin. 
+Jatkoin yrittämistä ja tässä kohtaa aloitin vaiheet alusta. Kokeilin poistua palvelimen terminaalista, ja palata uudelleen. Tässä vaiheessa statuskomento näytti, että Apache2-palvelin olisi päällä. Yritin taas komentoa ````sudo a2ensite...```` ja ````sudo systemctl restart apache2````, mutta lopputulos oli sama kuin aiemmin. 
 
 Komennolla ````sudo journalctl -xeu apache2.service```` sain seuraavat virheilmoitukset.
 
@@ -67,11 +71,11 @@ Error-logista löytyi komennolla ````sudo tail /var/log/apache2/error.log```` se
 
 Käynnistin vielä virtuaalikoneen uudelleen ja annoin komennot ````sudo apt-get update```` ja ````sudo apt upgrade apache2````, jos päivityksistä olisi apua, mutta ei ollut. Lopetin työskentelyn tällä erää.
 
-Jatkoin työskentelyä 16.2.2025 noin klo 10. Tilanne oli edelleen sama, eikä Apache käynnistynyt. Poistin sen komennolla ````sudo apt-get purge apache2````, hain päivitykset komennolla ````sudo apt-get update```` ja asensin uudelleen komennolla ````sudo apt-get install apache2````. Asennus onnistui ja Apachen status oli nyt aktiivinen.
+Jatkoin työskentelyä 16.2.2025 noin klo 10. Tilanne oli edelleen sama, eikä Apache käynnistynyt. Poistin sen komennolla ````sudo apt-get purge apache2````, hain päivitykset komennolla ````sudo apt-get update```` ja asensin uudelleen komennolla ````sudo apt-get install apache2````. Asennus onnistui ja palvelimen status oli nyt aktiivinen.
 
-Selasin eri keskustelupalstoja ja nettisivuja, ja sain niiden pohjalta idean, että virhe on suhteellisen yksinkertainen ja johtuu porteista. Sekä default-sivun että oman uuden sivuni VirtualHost-direktiivissä on portti 80, eikä näin voi olla. Hain tietoa, mitä toista porttia voisin käyttää, ja portti 8080 on ilmeisesti yleinen vaihtoehto portille 80 (SSL Insights).
+Selasin eri keskustelupalstoja ja nettisivuja, ja sain niiden perusteella idean, että virhe saattaakin olla suhteellisen yksinkertainen ja johtuu porteista. Sekä default-sivun että oman uuden sivuni VirtualHost-direktiivissä on portti 80, eikä näin voi olla. Hain tietoa, mitä toista porttia voisin käyttää, ja portti 8080 on ilmeisesti yleinen vaihtoehto portille 80 (SSL Insights).
 
-Vaihdoin default-sivulle portin 8080, ja jätin omalle sivulle portin 80. Tietääkseni en tule käyttämään default-sivua tässä yhteydessä, joten ajattelin olevan pienempi riski toimivuuden kannalta vaihtaa numero sinne. Default-sivu ei myöskään ole "enabled" tällä hetkellä. 
+Vaihdoin default-sivulle portin 8080, ja jätin omalle sivulle portin 80. Tietääkseni en tule käyttämään default-sivua tässä yhteydessä, joten ajattelin olevan pienempi riski toimivuuden kannalta vaihtaa numero sinne. Default-sivu ei myöskään ollut "enabled" tällä hetkellä. 
 
 ![kuva](https://github.com/user-attachments/assets/3dd17729-e013-4a5e-89cc-c664ce2b9c6b)
 
@@ -82,9 +86,9 @@ Nyt pystyin asettamaan sivun liljatatti.me käyttöön komennolla ````sudo a2ens
 Aktiivista työskentelyaikaa kului tähän vaiheeseen noin kaksi tuntia.
 
 
-### Tehtävä jatkuu 16.2.2025 klo 10.55
+### Tehtävä jatkuu
 
-Yritin avata sivuston liljatatti.me selaimella, mutta se ei avautunut.
+Jatkoin työskentelyä 16.2.2025 klo 10.55. Yritin avata sivuston liljatatti.me selaimella, mutta se ei avautunut.
 
 ![kuva](https://github.com/user-attachments/assets/ed674e1c-f598-479f-9552-745e0626bc0f)
 
@@ -92,22 +96,21 @@ Tarkistin error-lokitiedot komennolla ````sudo tail /var/log/apache2/error.log``
 
 ![kuva](https://github.com/user-attachments/assets/06c43188-0703-4401-9afc-95d9f43cddf1) 
 
-Käytin komentoa ````ls -l /path/to/file```` muodossa ````ls -l /etc/apache2/sites-available````, koska Name Based Virtual Host -tiedosto sijaitsee tässä polussa (Ask Ubuntu).
+Käytin komentoa ````ls -l /path/to/file```` muodossa ````ls -l /etc/apache2/sites-available````, koska Name Based Virtual Host -tiedosto sijaitsee tässä polussa, ja virheilmoituksen perusteella ongelma liittyy polun osioon (Ask Ubuntu). 
 
 ![kuva](https://github.com/user-attachments/assets/c7b3343d-351c-4a45-ac0e-893b8c5d00e6) 
 
-Komento listasi nimenomaan tiedostojen oikeudet, sillä rivin ensimmäinen merkki ````-```` tarkoittaa tiedostoa. Ensimmäiset kolme merkkiä tämän jälkeen kuvaavat read, write and execute -lupia omistajalla, toiset kolme merkkiä ryhmällä ja viimeiset muilla ("ugo", user, group, other). (Ask Ubuntu.) "root root" viittaa tiedoston omistajaan ja ryhmään, jolla on pääsy tiedostoon.
-(Linux Handbook). 
+Komento listasi nimenomaan tiedostojen oikeudet, mikä ilmenee rivin ensimmäisestä merkistä ````-````, joka tarkoittaa tiedostoa. Ensimmäiset kolme merkkiä tämän jälkeen kuvaavat read, write and execute -lupia omistajalla, toiset kolme merkkiä ryhmällä ja viimeiset muilla ("ugo", user, group, other). (Ask Ubuntu.) "root root" viittaa tiedoston omistajaan ja ryhmään, jolla on pääsy tiedostoon. (Linux Handbook.) 
 
-Ensin huomioni kiinnityi siihen, että kaikille sivuille on omistajuus rootilla. Haluan kuitenkin, että oman sivuni omistajuus on omalla käyttäjälläni, ja pystyn muokkaamaan tulevia kotisivuja normaalina käyttäjänä. Muistelin, että oppitunnilla käytettiin chown-komentoa, ja tarkensin sen oikeaa muotoa Copilotin tekoälyn avulla säästääkseni aikaa. Sain vastauksena kysymykseen "miten muutan tiedoston omistajuutta" komennon ````sudo chown yourusername:yourusername .````, ja pisteen kohdalle ohjeistettiin laittamaan kyseessä oleva tiedosto. Kokeilin siis komentoa ````sudo chown liljat.liljat liljatatti.me.conf````, ja se muutti oman sivuni omistajuuden omalle käyttäjälleni ja pääsyn ryhmälleni.
+Ensin huomioni kiinnityi siihen, että kaikkien sivujen omistajuus on rootilla. Haluan kuitenkin, että oman sivuni omistajuus on omalla käyttäjälläni, ja pystyn muokkaamaan tulevia kotisivuja normaalina käyttäjänä. Muistelin, että oppitunnilla käytettiin chown-komentoa, ja tarkensin sen oikeaa muotoa Copilotin tekoälyn avulla säästääkseni aikaa. Sain vastauksena kysymykseen "miten muutan tiedoston omistajuutta linuxissa" komennon ````sudo chown yourusername:yourusername .````, ja pisteen kohdalle ohjeistettiin laittamaan kyseessä oleva tiedosto. Kokeilin siis komentoa ````sudo chown liljat.liljat liljatatti.me.conf````, ja se muutti oman sivuni omistajuuden omalle käyttäjälleni.
 
 ![kuva](https://github.com/user-attachments/assets/a38a7030-b386-441e-b514-dd5a76b6a7e2)
 
-Nyt puuttui vielä loput oikeudet, sillä tällä hetkellä minulla oli oikeus vain lukea ja kirjoittaa, mutta ei ajaa. Käytin komentoa ````chmod +x liljatatti.me.conf```` ja sain execute-oikeudet. Käynnistin Apachen uudelleen.
+Nyt puuttui vielä loput oikeudet, sillä tällä hetkellä minulla oli oikeus vain lukea ja kirjoittaa, mutta ei ajaa. Käytin komentoa ````chmod +x liljatatti.me.conf```` ja sain execute-oikeudet (Linux Handbook). Käynnistin Apachen uudelleen, jotta muutokset tulevat voimaan.
 
 ![kuva](https://github.com/user-attachments/assets/ae4bd66d-6ab6-43bd-b464-7d05365e503a)
 
-Tällä en vielä saanut sivustoa näkyviin, ja virheilmoitus error.logissa oli sama. Olin nyt antanut oikeuksia vain tiedostolle, ja koska ilmoitus kertoo ongelman liittyvän polkuun, kokeilin samaa komentoa kohdistettuna koko polkuun: ````chmod +x /home/liljat/````. Tämä onnistui.
+Tällä toimenpiteellä en vielä saanut sivustoani näkyviin selaimella, ja virheilmoitus error.logissa oli sama kuin aiemmin. Olin nyt antanut oikeuksia vain tiedostolle, ja koska ilmoitus kertoo ongelman liittyvän polkuun, kokeilin samaa komentoa kohdistettuna koko polkuun: ````chmod +x /home/liljat/````. Tämä onnistui.
 
 ![kuva](https://github.com/user-attachments/assets/9a241ffb-3801-46ae-a686-fed5a7bb6837)
 
@@ -131,17 +134,17 @@ Ask Ubuntu, How do you view file permissions? https://askubuntu.com/questions/52
 Linux Handbook, Linux File Permissions and Ownership Explained with Examples: https://linuxhandbook.com/linux-file-permissions/. Luettu 16.2.2025. 
 
 
-## c) Kotisivu, 16.2.2025 klo 15
+## c) Kotisivu
 
-Tarkoituksena oli tehdä vähintään kolmen erillisen alasivun kotisivu. Sivujen muokkaamisen tulisi onnistua ilman pääkäyttäjän oikeuksia. 
+Aloitin tehtävän tekemisen 16.2.2025 klo 15. Tarkoituksena oli tehdä vähintään kolmen erillisen alasivun kotisivu. Sivujen muokkaamisen tulisi onnistua ilman pääkäyttäjän oikeuksia. 
 
-Olin aikaisemmin aloittanut etusivun tekemisen suoraan palvelimelle. Päätin luoda muut sivut ensin paikallisesti virtuaalikoneella, jotta voisin testata toimivuutta ennen sivujen julkaisemista. Päätin hyödyntää localhost-sivuani, joka oli hakemistossa ````/var/www/html/````, ja sieltä löytyi jo valmiiksi index.html-tekstitiedosto. Lisäsin hakemistoon kaksi muuta tiedostoa, portfolio.html ja cv.html. Loin HTML-sisältöä lyhyesti, ja muodostin linkit sivujen välille. Testasin toimivuutta paikallisella selaimella, ja kaikki toimi toivotusti.
+Olin aikaisemmin aloittanut etusivun tekemisen suoraan palvelimelle. Päätin luoda muut sivut ensin paikallisesti virtuaalikoneella, jotta voisin testata toimivuutta ennen sivujen julkaisemista. Päätin hyödyntää localhost-sivuani, joka oli hakemistossa ````/var/www/html/````, ja sieltä löytyi jo valmiiksi index.html-tekstitiedosto. Lisäsin hakemistoon kaksi muuta tiedostoa, portfolio.html ja cv.html. Loin HTML-sisältöä lyhyesti kaikille sivuille, ja muodostin linkit sivujen välille. Testasin toimivuutta paikallisella selaimella avaamalla sivut osoitteissa ````localhost````, ````localhost/portfolio.html```` ja ````localhost/cv.html````, ja kaikki toimi toivotusti.
 
-Kopioin tiedostot virtuaalipalvelimelleni alla kuvassa näkyvällä komennolla. Tämä komento kuitenkin kopioi koko html-kansion kohteeseen, eli virtuaalipalvelimen kansioon ````publicsites````.
+Kopioin tiedostot virtuaalipalvelimelleni alla olevassa kuvassa näkyvällä komennolla. Tämä komento kuitenkin kopioi koko html-kansion kohteeseen, eli virtuaalipalvelimen kansioon ````publicsites````.
 
 ![kuva](https://github.com/user-attachments/assets/97a86e38-ac94-417b-9990-5b15dad96202)
 
-Kuten yllä mainittu, virtuaalipalvelimeni tiedostoihin muodostui uusi html-niminen hakemisto, josta sitten kopioin tiedostot hakemistoon ````liljatatti.me```` komennoilla ````cp portfolio.html /home/liljat/publicsites/liljatatti.me```` ja ````cp cv.html /home/liljat/publicsites/liljatatti.me````.
+Virtuaalipalvelimeni tiedostoihin siis muodostui uusi html-niminen hakemisto, josta sitten kopioin itse tiedostot hakemistoon ````liljatatti.me```` komennoilla ````cp portfolio.html /home/liljat/publicsites/liljatatti.me```` ja ````cp cv.html /home/liljat/publicsites/liljatatti.me````.
 
 ![kuva](https://github.com/user-attachments/assets/bed80a30-fa9f-4c2d-9c4f-e97360c98c03)
 
@@ -155,7 +158,7 @@ Kokeilin oman tietokoneeni selaimella toimivuutta, eikä ongelmia ilmennyt.
 
 ![kuva](https://github.com/user-attachments/assets/eeedd7ae-e894-4db4-ac91-4967179a96b9)
 
-Testasin sivut vielä HTML-validaattorilla. Aluksi etusivulta sain saman huomautuksen kuin jossakin aiemmassa harjoituksessa, että kohdan ````<meta charset="utf-8" />```` kenoviiva on turha. Poistin sen heti kaikista tiedostoista, ja sen jälkeen kaikkien sivun tulos oli onnistunut, eli sivut ovat validia HTML5:a.
+Testasin sivut vielä HTML-validaattorilla. Aluksi etusivu ````liljatatti.me```` aiheutti aiemmista harjoituksista tutun huomautuksen, että kohdan ````<meta charset="utf-8" />```` kenoviiva on turha. Poistin sen heti kaikista tiedostoista, ja sen jälkeen kaikkien sivun tulos oli onnistunut, eli sivut ovat validia HTML5:a.
 
 ![kuva](https://github.com/user-attachments/assets/2a5a34d1-4dc4-48e8-a7be-d4e8afee0ef2)
 ![kuva](https://github.com/user-attachments/assets/b33e9528-3a10-4e22-807e-2b92eaeb34c8)
@@ -170,14 +173,15 @@ Tehtävänanto h5: https://terokarvinen.com/linux-palvelimet/
 HTML-validator: https://validator.w3.org
 
 
-## d) Alidomainit, 16.2.2025 klo 16.15
+## d) Alidomainit
 
-Siirryin kirjautumaan NameCheapiin ja avasin sieltä Domain listin kautta ````Manage```` ja ````Advanced DNS````. Lisäsin uuden tietueen alla näkyvillä tiedoilla ja tallensin. 
-LÄHDE: https://www.namecheap.com/support/knowledgebase/article.aspx/9776/2237/how-to-create-a-subdomain-for-my-domain/
+Aloitin tehtävän tekemisen 16.2.2025 klo 16.15. Tarkoituksena oli luoda kaksi uutta alidomainia, jotka avaavat saman pääsivun, kuin päädomain.
+
+Siirryin kirjautumaan Namecheapiin ja avasin sieltä Domain listin ja oman domainin kohdalta ````Manage```` ja ````Advanced DNS````. Lisäsin uuden tietueen alla näkyvillä tiedoilla ja tallensin. Käytin apuna Namecheapin omilla sivuilla olevaa ohjetta. (Namecheap 2024.)
 
 ![kuva](https://github.com/user-attachments/assets/ddfe9cec-34d0-4f5e-ac23-c7e251784a65)
 
-Hain selaimella ````linuxkurssi.liljatatti.me````, mutta sivua ei löydy. Loin myös toisen tietueen ````blog````, mutta sekään ei auennut. Päätin pitää taukoa ja odottaa hetken, jos päivittymisessä menisi hieman aikaa.
+Hain oman tietokoneeni Firefox-selaimella ````linuxkurssi.liljatatti.me````, mutta sivua ei löytynyt. Loin myös toisen tietueen ````blog````, mutta sekään ei auennut. Päätin pitää taukoa ja odottaa hetken, jos päivittymisessä menisi hieman aikaa.
 
 Aikaa tässä vaiheessa oli kulunut 15 minuuttia.
 
@@ -187,30 +191,97 @@ Klo 17 jatkoin tehtävän tekemistä. Oman tietokoneeni tai virtuaalikoneen Fire
 
 ![kuva](https://github.com/user-attachments/assets/314811aa-2fe7-4876-90fc-ce3019d6029c)
 
-Tässä kohtaa jäi selvittämättä, mistä ongelma voisi johtua. Päätin palata asiaan taas myöhemmin.
+Tässä kohtaa jäi selvittämättä, mistä viive omalla tietokoneella ja virtuaalikoneella voisi johtua. Päätin palata asiaan taas myöhemmin.
+
+Maanantaina 17.2.2025 klo 13 alidomainit aukesivat myös oman tietokoneeni Firefox-selaimella.
+
+![kuva](https://github.com/user-attachments/assets/6f91335a-605e-4303-89d8-116d1a2e7c95)
+
+
+### Lähteet
+Namecheap 2024, How to Create a Subdomain for my Domain: https://www.namecheap.com/support/knowledgebase/article.aspx/9776/2237/how-to-create-a-subdomain-for-my-domain/. Luettu 16.2.2025.
 
 
 
-## e) DNS-tiedot, 16.2.2025 klo 16.30
+## e) DNS-tiedot
 
-Host-komentoa käytetään kääntämään verkkotunnus IP-osoitteeksi ja päinvastoin. 
-LÄHDE: man host
+Aloitin tehtävän tekemisen 17.2.2025 klo 13.35. Tarkoituksena oli tutkia kolmen eri nimen DNS-tietoja host ja dig -komennoilla.
 
-![kuva](https://github.com/user-attachments/assets/43d0312f-e044-4962-9dc9-4bf524d679ec) host liljatatti.me
+### Host
 
-![kuva](https://github.com/user-attachments/assets/6e765dfa-b7f0-4a43-8fe0-6b7c677fe4c4) host namecheap.com
+Ennen kuin host-komennot toimivat, piti se asentaa. Hain saatavilla olevat päivitykset komennolla ````sudo apt-get update```` ja asensin hostin komennolla ````sudo apt-get install host````.
 
-![kuva](https://github.com/user-attachments/assets/7ef86de7-35e4-452f-9bbe-81c9bdaacd08) host helsingintarmo.fi
+Host-komentoa käytetään kääntämään verkkotunnus IP-osoitteeksi ja päinvastoin (komento man host). Annoin komennon host kolmen eri nimen kanssa, jotka olivat oma domainnimeni ````liljatatti.me````, pienen yhdistyksen nettisivu ````helsingintarmo.fi```` ja suuri, kaikkien tuntema toimija ````google.com````.
 
-Dig asennus dnsutils
-LÄHDE: https://askubuntu.com/questions/25098/how-do-i-install-dig
+![kuva](https://github.com/user-attachments/assets/6627addd-8052-46e6-8cac-fd3a87c94d65)
 
-Dig on työkalu, joka hakee DNS-tietoja ja näyttää vastaukset nimipalvelimelta, johon kysely tehtiin. Dig-komentoa käytetään mm. vianselvitykseen. Komentoon on mahdollista liittää useita eri valintoja ja täsmennyksiä. 
-LÄHDE: man dig
+Oma domainnimeni antoi tuloksena virtuaalipalvelimeni IP-osoitteen. Muita yksityiskohtia oli sähköpostin välittämiseen liittyvät tiedot. Nämä löytyivät myös Namecheapin sivulta oman domainnimeni Advanced DNS -asetuksista.
 
-![kuva](https://github.com/user-attachments/assets/259dc682-7e02-44c5-94bf-b69aa5a7b0cf) dig liljatatti.me
+![kuva](https://github.com/user-attachments/assets/b5eaf6df-51c7-4a5b-813a-91eb4e73aedf)
+
+Helsingin Tarmon osalta tiedot olivat samankaltaiset, eli palvelimen IP-osoite ja sähköpostitietoja.
+
+Googlen kohdalla näkyvissä oli myös heidän palvelimensa IPv6-osoite IPv4-osoitteen ja sähköpostitietojen lisäksi. Ilmeisesti omalla virtuaalipalvelimellani tai Helsingin Tarmon palvelimella ei siis ole IPv6-osoitteita käytössä. Kirjauduin DigitalOceaniin ja tarkistin asian, ja näin tosiaan oli. Katsoin, mitä IPv6-osoitteen käyttöönotto vaatisi, ja olemassa olevan dropletin kohdalla se vaatii manuaalista konfigurointia. Sivustolla oli selkeän oloinen ohje (DigitalOcean 2024), mutta en vielä ryhtynyt toimeen.
+
+Aikaa kului 15 minuuttia.
+
+### Dig
+
+Aloitin tehtävän tekemisen 17.2.2025 klo 14. Myös digin kohdalla se piti ensin asentaa komennolla ````sudo apt-get install dnsutils```` (Ask Ubuntu).
+
+Dig on työkalu, joka hakee DNS-tietoja ja näyttää vastaukset nimipalvelimelta, johon kysely tehtiin. Dig-komentoa käytetään mm. vianselvitykseen. Komentoon on mahdollista liittää useita eri avainsanoja, jotka vaikuttavat hakujen tekotapaan ja lopputulokseen. Nämä liitetään pääkomentoon plus-merkillä. Avainsanat voivat mm. asettaa tai nollata valinnan, tai antaa arvoja valinnoille. Monen valinnan tiedot, kuten ````+additional```` ja ````+answer```` näytetään oletuksena. Jos haluaa nähdä enemmän tietoa, voi käyttää esimerkiksi avainsanaa ````+all````, joka asettaa kaikki näyttöön liittyvät asetukset päälle. (komento man dig.)
+
+#### dig liljatatti.me
+
+Testasin aluksi komentoja ````dig liljatatti.me```` ja ````dig liljatatti.me +all````. Huomasin, että tulostetut tiedot olivat lähes täysin samat.
+
+![kuva](https://github.com/user-attachments/assets/efbf229a-4513-4379-a126-f782e627844b) 
+
+![kuva](https://github.com/user-attachments/assets/d0bef996-c09d-4cca-bba8-c8a99ffd483b) 
+
+Ensimmäinen rivi näyttää asennetun digin version ja domainnimen, johon kysely kohdistui. Seuraavilla riveillä on tietoa globaaleista vaihtoehdoista ja teknistä tietoa vastauksesta, kuten statuksen, joka tässä tapauksessa on NOERROR, eli ei virheitä kyselyssä. (Linuxize 2020.) OPT PSEUDOSECTION liittyy DNS:n laajennuksiin (Wikipedia 2024). Kysymysosio (QUESTION SECTION) näyttää itse kyselyn, joka on oletuksena pyyntö A-tietueeseen, kuten myös tässä tapauksessa kirjaimesta "A" ilmenee (Linuxize 2020). 
+
+Vastausosiossa (ANSWER SECTION) nähdään kyselyn vastaus. Ensimmäisenä asiana vastauksesta huomaan, että domain ````liljatatti.me```` osoittaa IP-osoitteeseen 178.62.233.5, joka on virtuaalipalvelimeni osoite. A-kirjain viittaa A-tietueeseen, eli domainnimi yhdistettiin oikeaan IP-osoitteeseen (Cloudfare a). Toinen kohta rivillä ilmaisee TTL-ajan (Time To Live) sekunneissa, eli kauanko tietue säilyy välimuistissa ennen päivittämistä. Ensimmäisen haun kohdalla lukema on 300, eli viisi minuuttia, kuten alussa määrittelin. Toisen haun kohdalla muutamia sekunteja oli kulunut, ja lukema oli nyt 293. ````IN`````-kohta tarkoittaa luokkaa, tässä yhteydessä tarkoittaa Internetiä. (Linuxize 2020, Stackoverflow.)
+
+Viimeinen osio kertoo kyselyyn liittyvää statistiikkaa, kuten kyselyn ajankohdan, kuluneen ajan, viestin koon ja palvelimen IP-osoitteen.
+
+Lähdesivullani (Linuxize) oli tuotu esille myös kohdat ````AUTHORITY```` ja ````ADDITIONAL````, joita omassa haussani ei ollut näkyvissä. En saanut lisää tuloksia avainsanoilla ````+additional```` tai ````+authority````. Kokeilin tehdä haun komennolla ````dig 178.62.233.5 liljatatti.me```` ja sain Authority-osion jokseenkin näkyviin (Serverfault). 
+
+![kuva](https://github.com/user-attachments/assets/8a31267f-c95f-46b8-925f-31a6f1357b45)
+
+Komennolla ````dig liljatatti.me +trace```` sain authority-osioon paljon lisätietoa, alla kuvassa ote viimeisistä riveistä. Lyhenne ````NS```` riveillä tarkoittaa name serveriä eli nimipalvelinta, joka vastaa kyseisestä domainista (Cloudfare b). Sain siis näkyviin domainista vastaavan nimipalvelimen, ````dns2 ja dns1.registrar-servers.com````.
+
+![kuva](https://github.com/user-attachments/assets/fad2ae65-86ac-4f1b-96f6-d00fe058d358)
+
+Tässä vaiheessa en saanut Additional-osiota näkyviin.
+
+Tähän kului aikaa 1h 50min. 
+
+#### dig helsingintarmo.fi
 
 
 
+#### dig google.com 
 
 
+### Lähteet
+
+Terminaalikomento man host, luettu 17.2.2025.
+
+DigitalOcean 2024, How to Enable IPv6 on Droplets: https://docs.digitalocean.com/products/networking/ipv6/how-to/enable/#on-existing-droplets. Luettu 17.2.2025.
+
+Ask Ubuntu, How do I install dig? https://askubuntu.com/questions/25098/how-do-i-install-dig. Luettu 17.2.2025.
+
+Terminaalikomento man dig, luettu 17.2.2025.
+
+Linuxize 2020, Dig Command in Linux (DNS Lookup): https://linuxize.com/post/how-to-use-dig-command-to-query-dns-in-linux/. Luettu 17.2.2025.
+
+Wikipedia 2024, Extension Mechanisms for DNS: https://en.wikipedia.org/wiki/Extension_Mechanisms_for_DNS. Luettu 17.2.2025.
+
+Cloudfare a, DNS A record: https://www.cloudflare.com/learning/dns/dns-records/dns-a-record/. Luettu 17.2.2025.
+
+Stackoverflow, Meaning of the five fields of the ANSWER SECTION in dig query: https://stackoverflow.com/questions/20297531/meaning-of-the-five-fields-of-the-answer-section-in-dig-query. Luettu 17.2.2025.
+
+Serverfault, Why does dig not show the authority section and how to make it show the authoritative name servers that hold the DNS query`s answer? https://serverfault.com/questions/1088257/why-does-dig-not-show-the-authority-section-and-how-to-make-it-show-the-authorit. Luettu 17.2.2025.
+
+Cloudfare b, DNS NS record: https://www.cloudflare.com/learning/dns/dns-records/dns-ns-record/. Luettu 17.2.2025.
