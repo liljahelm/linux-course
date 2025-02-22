@@ -10,13 +10,13 @@ Kaikki harjoitukset perustuvat tehtävänantoihin kevään 2025 Linux-palvelimet
 
 Aloitin tehtävän tekemisen 15.2.2025 klo 14.
 
-Tarkoituksena oli hankkia julkinen domainnimi ja laittaa se osoittamaan omaan virtuaalikoneeseen. hHankin itselleni domainnimen Namecheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hyödynsin rekisteröitymisessä tarvittavissa kohdissa Susanna Lehdon tehtäväraporttia ohjeena.
+Tarkoituksena oli hankkia julkinen domainnimi ja laittaa se osoittamaan omaan virtuaalikoneeseen. Hankin itselleni domainnimen Namecheapin kautta, sillä sitä suositeltiin oppitunnilla ja GitHub Educationin kautta sai palveluun vuodeksi ilmaisen nimen. Hyödynsin rekisteröitymisessä tarvittavissa kohdissa Susanna Lehdon tehtäväraporttia ohjeena.
 
 Ensin hakeuduin Namecheapin sivustolle GitHubin Student Developer Packin linkin kautta, ja rekisteröidyin. Rekisteröityminen piti tehdä henkilökohtaisella sähköpostilla koulun sähköpostin sijaan. Alussa valitsin kohdan GitHub Pages Free siltä varalta, jos haluaisin myöhemmin hyödyntää nettisivun tekemistä GitHubin repositoryjen kautta. 
 
 ![kuva](https://github.com/user-attachments/assets/95f2716d-4671-412e-9b4f-5577b95b587e)
 
-Tilaus onnistui ja pääsin jatkamaan kirjautumiseen ja tarpeellisten toimien tekemiseen. Kirjauduttuani palveluun valitsin valikosta ````Domain List````, josta pääsin hallintapaneeliin ja valitsin valikon ````Advanced DNS````. Näkymässä oli aluksi viisi (kuvassa neljä) valmista tietuetta, jotka poistin, sillä niistä ei ole tässä yhteydessä hyötyä. 
+Tilaus onnistui ja pääsin jatkamaan kirjautumiseen ja tarpeellisten toimien tekemiseen. Kirjauduttuani palveluun valitsin valikosta ````Domain List````, josta pääsin hallintapaneeliin ja valitsin valikon ````Advanced DNS````. Näkymässä oli aluksi viisi (kuvassa neljä) valmista tietuetta, jotka poistin, sillä niille ei ollut tässä yhteydessä käyttöä. 
 
 ![kuva](https://github.com/user-attachments/assets/07c06c77-57a1-4416-987b-3a025580e6a7)
 
@@ -191,7 +191,7 @@ Klo 17 jatkoin tehtävän tekemistä. Oman tietokoneeni tai virtuaalikoneen Fire
 
 ![kuva](https://github.com/user-attachments/assets/314811aa-2fe7-4876-90fc-ce3019d6029c)
 
-Tässä kohtaa jäi selvittämättä, mistä viive omalla tietokoneella ja virtuaalikoneella voisi johtua. Päätin palata asiaan taas myöhemmin.
+Tässä kohtaa jäi selvittämättä, mistä viive omalla tietokoneella ja virtuaalikoneella voisi johtua. 
 
 Maanantaina 17.2.2025 klo 13 alidomainit aukesivat myös oman tietokoneeni Firefox-selaimella.
 
@@ -209,7 +209,7 @@ Aloitin tehtävän tekemisen 17.2.2025 klo 13.35. Tarkoituksena oli tutkia kolme
 
 ### Host
 
-Ennen kuin host-komennot toimivat, piti se asentaa. Hain saatavilla olevat päivitykset komennolla ````sudo apt-get update```` ja asensin hostin komennolla ````sudo apt-get install host````.
+Ennen kuin host-komennot toimivat, host piti asentaa. Hain saatavilla olevat päivitykset komennolla ````sudo apt-get update```` ja asensin hostin komennolla ````sudo apt-get install host````.
 
 Host-komentoa käytetään kääntämään verkkotunnus IP-osoitteeksi ja päinvastoin (komento man host). Annoin komennon host kolmen eri nimen kanssa, jotka olivat oma domainnimeni ````liljatatti.me````, pienen yhdistyksen nettisivu ````helsingintarmo.fi```` ja suuri, kaikkien tuntema toimija ````google.com````.
 
@@ -227,7 +227,7 @@ Aikaa kului 15 minuuttia.
 
 ### Dig
 
-Aloitin tehtävän tekemisen 17.2.2025 klo 14. Myös digin kohdalla se piti ensin asentaa komennolla ````sudo apt-get install dnsutils```` (Ask Ubuntu).
+Aloitin tehtävän tekemisen 17.2.2025 klo 14. Myös dig piti ensin asentaa komennolla ````sudo apt-get install dnsutils```` (Ask Ubuntu).
 
 Dig on työkalu, joka hakee DNS-tietoja ja näyttää vastaukset nimipalvelimelta, johon kysely tehtiin. Dig-komentoa käytetään mm. vianselvitykseen. Komentoon on mahdollista liittää useita eri avainsanoja, jotka vaikuttavat hakujen tekotapaan ja lopputulokseen. Nämä liitetään pääkomentoon plus-merkillä. Avainsanat voivat mm. asettaa tai nollata valinnan, tai antaa arvoja valinnoille. Monen valinnan tiedot, kuten ````+additional```` ja ````+answer```` näytetään oletuksena. Jos haluaa nähdä enemmän tietoa, voi käyttää esimerkiksi avainsanaa ````+all````, joka asettaa kaikki näyttöön liittyvät asetukset päälle. (komento man dig.)
 
@@ -241,7 +241,7 @@ Testasin aluksi komentoja ````dig liljatatti.me```` ja ````dig liljatatti.me +al
 
 Ensimmäinen rivi näyttää asennetun digin version ja domainnimen, johon kysely kohdistui. Seuraavilla riveillä on tietoa globaaleista vaihtoehdoista ja teknistä tietoa vastauksesta, kuten statuksen, joka tässä tapauksessa on NOERROR, eli ei virheitä kyselyssä. (Linuxize 2020.) OPT PSEUDOSECTION liittyy DNS:n laajennuksiin (Wikipedia 2024). Kysymysosio (QUESTION SECTION) näyttää itse kyselyn, joka on oletuksena pyyntö A-tietueeseen, kuten myös tässä tapauksessa kirjaimesta "A" ilmenee (Linuxize 2020). 
 
-Vastausosiossa (ANSWER SECTION) nähdään kyselyn vastaus. Ensimmäisenä asiana vastauksesta huomaan, että domain ````liljatatti.me```` osoittaa IP-osoitteeseen 178.62.233.5, joka on virtuaalipalvelimeni osoite. A-kirjain viittaa A-tietueeseen, eli domainnimi yhdistettiin oikeaan IP-osoitteeseen (Cloudfare a). Toinen kohta rivillä ilmaisee TTL-ajan (Time To Live) sekunneissa, eli kauanko tietue säilyy välimuistissa ennen päivittämistä. Ensimmäisen haun kohdalla lukema on 300, eli viisi minuuttia, kuten alussa määrittelin. Toisen haun kohdalla muutamia sekunteja oli kulunut, ja lukema oli nyt 293. ````IN````-kohta tarkoittaa luokkaa, tässä yhteydessä tarkoittaa Internetiä. (Linuxize 2020, Stackoverflow.)
+Vastausosiossa (ANSWER SECTION) nähdään kyselyn vastaus. Ensimmäisenä asiana vastauksesta huomaan, että domain ````liljatatti.me```` osoittaa IP-osoitteeseen 178.62.233.5, joka on virtuaalipalvelimeni osoite. A-kirjain viittaa A-tietueeseen, eli domainnimi yhdistettiin oikeaan IP-osoitteeseen (Cloudfare a). Toinen kohta rivillä ilmaisee TTL-ajan (Time To Live) sekunneissa, eli kauanko tietue säilyy välimuistissa ennen päivittämistä. Ensimmäisen haun kohdalla lukema on 300, eli viisi minuuttia, kuten alussa määrittelin. Toisen haun kohdalla muutamia sekunteja oli kulunut, ja lukema oli nyt 293. ````IN````-kohta tarkoittaa luokkaa, tässä yhteydessä Internetiä. (Linuxize 2020, Stackoverflow a.)
 
 Viimeinen osio kertoo kyselyyn liittyvää statistiikkaa, kuten kyselyn ajankohdan, kuluneen ajan, viestin koon ja palvelimen IP-osoitteen.
 
@@ -249,19 +249,47 @@ Lähdesivullani (Linuxize) oli tuotu esille myös kohdat ````AUTHORITY```` ja ``
 
 ![kuva](https://github.com/user-attachments/assets/8a31267f-c95f-46b8-925f-31a6f1357b45)
 
-Komennolla ````dig liljatatti.me +trace```` sain authority-osioon paljon lisätietoa, alla kuvassa ote viimeisistä riveistä. Lyhenne ````NS```` riveillä tarkoittaa name serveriä eli nimipalvelinta, joka vastaa kyseisestä domainista (Cloudfare b). Sain siis näkyviin domainista vastaavan nimipalvelimen, ````dns2 ja dns1.registrar-servers.com````.
+Komennolla ````dig liljatatti.me +trace```` sain authority-osioon paljon lisätietoa, alla kuvassa ote viimeisistä riveistä. Lyhenne ````NS```` riveillä tarkoittaa name serveriä eli nimipalvelinta, joka vastaa kyseisestä domainista (Cloudfare b). Sain siis näkyviin domainista vastaavan nimipalvelimen, ````dns2 ja dns1.registrar-servers.com````. ````Registrar-servers```` oli myös host-komennon tulosteessa sähköpostitiedoissa.
 
 ![kuva](https://github.com/user-attachments/assets/fad2ae65-86ac-4f1b-96f6-d00fe058d358)
 
-Tässä vaiheessa en saanut Additional-osiota näkyviin.
+Tässä vaiheessa en saanut Additional-osiota näkyviin. Alkuperäisessä haussani kohdassa ````flags```` kuitenkin näkyi additional-osio numerolla 1, eli tulkintani mukaan se on haettu. Mahdollisesti mitään näytettävää tietoa ei siis ollut?
 
-Tähän kului aikaa 1h 50min. 
+Törmäsin myöhemmin keskustelupalstalla vielä komentoon ````dig domainname ANY````, ja kokeilin sitä. Tulos oli lähes sama kuin aikaisemmin.
+
+![kuva](https://github.com/user-attachments/assets/b5fd0369-126b-462b-9051-1a667438ba71)
+
+Ilmeisesti komento ei aina näytä kaikkia lisätietoja, sillä hakutulos riippuu siitä, mitä DNS-palvelimia haussa käytetään. (Serverfault b.) Ilmeisesti tietoa ei tule juurikaan lisää, koska tulokset haetaan virtuaalikoneen(?) omasta välimuistista, eikä haussa käytetä autoritatiivista nimipalvelinta, joka hakisi vastauksen (Superuser).
+
+Tähän kului aikaa 2h. 
+
 
 #### dig helsingintarmo.fi
 
+Jatkoin tehtävää 22.2.2025 klo 9.55. Käytin komentoa ````dig helsingintarmo.fi````. Lähes kaikki tiedot alkupuolella olivat samoja, kuin edellisessä haussa. TTL-aika oli kuitenkin pidempi, 600 sekuntia, ja luonnollisesti domainin IP-osoite oli eri. 
+
+![kuva](https://github.com/user-attachments/assets/3418af52-c065-433b-a381-1a8ede9d158b)
+
+Hain authority-tietoja komennolla ````dig helsingintarmo.fi +trace````, ja hakutuloksena nousi myös host-osiossa näkynyt ````euronic````. Euronic vastaa siis domainin DNS- ja sähköpostitiedoista.
+
+![kuva](https://github.com/user-attachments/assets/e8a5bbdb-b543-4208-ae0f-f95ed3160d36)
+
+Komennolla ````dig helsingintarmo.fi ANY```` sain hieman enemmän tietoa. Vastauksia löytyi 8 kpl, ja tällä kertaa tietueita oli erilaisia, joista uusia olivat TXT, MX ja SOA.
+
+![kuva](https://github.com/user-attachments/assets/bf3b9f66-473e-4b5a-a2fc-0dbda905a4ef)
+
+TXT-tietue tarkoittaa, että domainin ylläpitäjä saa syöttää tekstiä DNS-järjestelmään. Syötetyn tekstin tunnistaa lainausmerkistä, kuten kuvassakin näkyy. Tietue on tavallaan muistiinpano. TXT-tietue voi auttaa ehkäisemään roskapostia sähköpostissa, sillä sitä käytetään sähköpostipalvelimilla tunnistamaan, onko lähde luotettu. Se voi myös auttaa varmentamaan domainin omistajuuden, jos tietuetta käytetään todistamaan, että tietty taho pystyy tekemään muutoksia siihen. (Cloudfare c.)
+
+MX-tietue eli "mail exchange" ohjaa sähköpostiviestin sähköpostipalvelimelle. MX-tietue kertoo, miten viesti pitäisi reitittää SMTP-protokollan mukaan. Tietue sisältää prioriteettinumeron, joka omassa haussani oli 10. MX-tietueita oli kaksi, joista ensimmäisen arvossa on numero 1 ````mx-in1.euronic.fi````, ja toisessa numero 2 ````mx-in2.euronic.fi````. Molemmissa oli prioriteettinumero 10, joten ne ovat tärkeysjärjestyksessä tasaveroiset, joten ne vastaanottavat kumpikin saman verran sähköpostia. (Cloudfare d.)
+
+SOA-tietue eli "start of authority" löytyy jokaiselta DNS-alueelta, joka täyttää IETF:n standardit. Tietue sisältää tietoa mm. domainin tai alueen ylläpitäjän sähköpostiosoitteesta ja viimeisistä päivitysajoista. Omassa hakutuloksessani mainittiin jälleen euronic, joka löytyi aikaisemmistakin kohdista sähköpostitietoihin liittyen. Perässä olevat numerosarjat kertovat sarjanumeron, päivitysajan, aikamääreen kauanko odotetaan uusia päivityksiä, milloin kyselyihin vastaaminen lopetetaan, ja TTL-ajan. (Cloudfare e.) Kuvassa näkyvät nämä kaikki numerot ja sekuntimäärät.
+
+Aikaa kului 50 minuuttia.
 
 
 #### dig google.com 
+
+
 
 
 ### Lähteet
@@ -282,6 +310,17 @@ Cloudfare a, DNS A record: https://www.cloudflare.com/learning/dns/dns-records/d
 
 Stackoverflow, Meaning of the five fields of the ANSWER SECTION in dig query: https://stackoverflow.com/questions/20297531/meaning-of-the-five-fields-of-the-answer-section-in-dig-query. Luettu 17.2.2025.
 
-Serverfault, Why does dig not show the authority section and how to make it show the authoritative name servers that hold the DNS query`s answer? https://serverfault.com/questions/1088257/why-does-dig-not-show-the-authority-section-and-how-to-make-it-show-the-authorit. Luettu 17.2.2025.
+Serverfault a, Why does dig not show the authority section and how to make it show the authoritative name servers that hold the DNS query`s answer? https://serverfault.com/questions/1088257/why-does-dig-not-show-the-authority-section-and-how-to-make-it-show-the-authorit. Luettu 17.2.2025.
 
 Cloudfare b, DNS NS record: https://www.cloudflare.com/learning/dns/dns-records/dns-ns-record/. Luettu 17.2.2025.
+
+Serverfault b, List all DNS records in a domain using dig? https://serverfault.com/questions/138949/list-all-dns-records-in-a-domain-using-dig. Luettu 22.2.2025.
+
+Superuser, 'dig any' results wrong, missing data: https://superuser.com/questions/184066/dig-any-results-wrong-missing-data. Luettu 22.2.2025.
+
+Cloudfare c, What is a DNS TXT record? https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/. Luettu 22.2.2025.
+
+Cloudfare d, What is a DNS MX record? https://www.cloudflare.com/learning/dns/dns-records/dns-mx-record/. Luettu 22.2.2025.
+
+Cloudfare e, What is a DNS SOA record? https://www.cloudflare.com/learning/dns/dns-records/dns-soa-record/. Luettu 22.2.2025.
+
