@@ -4,6 +4,8 @@
 
 Seuraavat harjoitukset on tehty virtuaalikoneella, johon asennettiin käyttöjärjestelmäksi Debian 64-bit. Virtuaalikoneella on 60 Gt virtuaalinen kovalevy ja muistia 4000 Mt. Virtual memoryä lisättiin 128 megatavuun, jonka jälkeen käyttö nopeutui. Käytän virtuaalikonetta VirtualBoxilla (versio 7.1.4) omalla itse kootulla pc:llä (käyttöjärjestelmä Windows 11 64-bit, prosessori Intel i3-9100F, näytönohjain Asus GTX 1060 3GB, emolevy ASRock H310CM-HDV, RAM 8 GB, SSD 500GB).
 
+Virtuaalipalvelin on vuokrattu DigitalOcean-palvelusta, ja palvelimella on 1 Gt keskusmuistia ja 25 Gt:n SSD-levy.
+
 Kaikki harjoitukset perustuvat tehtävänantoihin kevään 2025 Linux-palvelimet -kurssin sivustolla: https://terokarvinen.com/linux-palvelimet/.
 
 ## a) Nimi
@@ -221,7 +223,7 @@ Oma domainnimeni antoi tuloksena virtuaalipalvelimeni IP-osoitteen. Muita yksity
 
 Helsingin Tarmon osalta tiedot olivat samankaltaiset, eli palvelimen IP-osoite ja sähköpostitietoja.
 
-Googlen kohdalla näkyvissä oli myös heidän palvelimensa IPv6-osoite IPv4-osoitteen ja sähköpostitietojen lisäksi. Ilmeisesti omalla virtuaalipalvelimellani tai Helsingin Tarmon palvelimella ei siis ole IPv6-osoitteita käytössä. Kirjauduin DigitalOceaniin ja tarkistin asian, ja näin tosiaan oli. Katsoin, mitä IPv6-osoitteen käyttöönotto vaatisi, ja olemassa olevan dropletin kohdalla se vaatii manuaalista konfigurointia. Sivustolla oli selkeän oloinen ohje (DigitalOcean 2024), mutta en vielä ryhtynyt toimeen.
+Googlen kohdalla näkyvissä oli muiden jo tarkasteltujen tietojen lisäksi myös heidän palvelimensa IPv6-osoite. Ilmeisesti omalla virtuaalipalvelimellani tai Helsingin Tarmon palvelimella ei siis ole IPv6-osoitteita käytössä. Kirjauduin DigitalOceaniin ja tarkistin asian, ja näin tosiaan oli. Katsoin, mitä IPv6-osoitteen käyttöönotto vaatisi, ja olemassa olevan dropletin kohdalla se vaatii manuaalista konfigurointia. Sivustolla oli selkeän oloinen ohje (DigitalOcean 2024), mutta en vielä ryhtynyt toimeen.
 
 Aikaa kului 15 minuuttia.
 
@@ -261,7 +263,7 @@ Törmäsin myöhemmin keskustelupalstalla vielä komentoon ````dig domainname AN
 
 Ilmeisesti komento ei aina näytä kaikkia lisätietoja, sillä hakutulos riippuu siitä, mitä DNS-palvelimia haussa käytetään. (Serverfault b.) Ilmeisesti tietoa ei tule juurikaan lisää, koska tulokset haetaan virtuaalikoneen(?) omasta välimuistista, eikä haussa käytetä autoritatiivista nimipalvelinta, joka hakisi vastauksen (Superuser).
 
-Tähän kului aikaa 2h. 
+Tähän kului aikaa 2 tuntia. 
 
 
 #### dig helsingintarmo.fi
@@ -270,17 +272,17 @@ Jatkoin tehtävää 22.2.2025 klo 9.55. Käytin komentoa ````dig helsingintarmo.
 
 ![kuva](https://github.com/user-attachments/assets/3418af52-c065-433b-a381-1a8ede9d158b)
 
-Hain authority-tietoja komennolla ````dig helsingintarmo.fi +trace````, ja hakutuloksena nousi myös host-osiossa näkynyt ````euronic````. Euronic vastaa siis domainin DNS- ja sähköpostitiedoista.
+Hain nimipalvelinten tietoja komennolla ````dig helsingintarmo.fi +trace````, ja hakutuloksena nousi mm. host-osiossa näkynyt ````euronic````. Euronic vastaa siis tämän domainin DNS- ja sähköpostitiedoista.
 
 ![kuva](https://github.com/user-attachments/assets/e8a5bbdb-b543-4208-ae0f-f95ed3160d36)
 
-Komennolla ````dig helsingintarmo.fi ANY```` sain hieman enemmän tietoa. Vastauksia löytyi 8 kpl, ja tällä kertaa tietueita oli erilaisia, joista uusia olivat TXT, MX ja SOA.
+Komennolla ````dig helsingintarmo.fi ANY```` sain hieman enemmän tietoa. Vastauksia löytyi 8, ja tällä kertaa tietueita oli erilaisia, joista uusia olivat TXT, MX ja SOA. Myös tämä haku olisi näyttänyt ````+trace```` haussa löytyneet nimipalvelinten tiedot.
 
 ![kuva](https://github.com/user-attachments/assets/bf3b9f66-473e-4b5a-a2fc-0dbda905a4ef)
 
 TXT-tietue tarkoittaa, että domainin ylläpitäjä saa syöttää tekstiä DNS-järjestelmään. Syötetyn tekstin tunnistaa lainausmerkistä, kuten kuvassakin näkyy. Tietue on tavallaan muistiinpano. TXT-tietue voi auttaa ehkäisemään roskapostia sähköpostissa, sillä sitä käytetään sähköpostipalvelimilla tunnistamaan, onko lähde luotettu. Se voi myös auttaa varmentamaan domainin omistajuuden, jos tietuetta käytetään todistamaan, että tietty taho pystyy tekemään muutoksia siihen. (Cloudfare c.)
 
-MX-tietue eli "mail exchange" ohjaa sähköpostiviestin sähköpostipalvelimelle. MX-tietue kertoo, miten viesti pitäisi reitittää SMTP-protokollan mukaan. Tietue sisältää prioriteettinumeron, joka omassa haussani oli 10. MX-tietueita oli kaksi, joista ensimmäisen arvossa on numero 1 ````mx-in1.euronic.fi````, ja toisessa numero 2 ````mx-in2.euronic.fi````. Molemmissa oli prioriteettinumero 10, joten ne ovat tärkeysjärjestyksessä tasaveroiset, joten ne vastaanottavat kumpikin saman verran sähköpostia. (Cloudfare d.)
+MX-tietue eli "mail exchange" ohjaa sähköpostiviestin sähköpostipalvelimelle. MX-tietue kertoo, miten viesti pitäisi reitittää SMTP-protokollan mukaan. Tietue sisältää prioriteettinumeron, joka omassa haussani oli 10. MX-tietueita oli kaksi, joista ensimmäisen arvossa on numero 1 ````mx-in1.euronic.fi````, ja toisessa numero 2 ````mx-in2.euronic.fi````. Molemmissa oli prioriteettinumero 10, joten ne ovat tärkeysjärjestyksessä tasaveroiset ja vastaanottavat kumpikin saman verran sähköposteja. Mitä alhaisempi prioriteettinumero on, sitä korkeampi prioriteetti on. (Cloudfare d.)
 
 SOA-tietue eli "start of authority" löytyy jokaiselta DNS-alueelta, joka täyttää IETF:n standardit. Tietue sisältää tietoa mm. domainin tai alueen ylläpitäjän sähköpostiosoitteesta ja viimeisistä päivitysajoista. Omassa hakutuloksessani mainittiin jälleen euronic, joka löytyi aikaisemmistakin kohdista sähköpostitietoihin liittyen. Perässä olevat numerosarjat kertovat sarjanumeron, päivitysajan, aikamääreen kauanko odotetaan uusia päivityksiä, milloin kyselyihin vastaaminen lopetetaan, ja TTL-ajan. (Cloudfare e.) Kuvassa näkyvät nämä kaikki numerot ja sekuntimäärät.
 
@@ -289,8 +291,21 @@ Aikaa kului 50 minuuttia.
 
 #### dig google.com 
 
+Aloitin tämän tehtävän 23.2.2025 klo 14.15. Kokeilin ensimmäisenä yhdistettyä komentoa ````dig google.com ANY +trace````, mutta hakutulos oli jokseenkin sekava tulkita. Käytin siis jälleen ensin komentoa ````dig google.com ANY````. Hakutuloksia löytyi 9, ja uusina termeinä tietueiden sarakkeesta löytyi AAAA ja HTTPS.
+
+![image](https://github.com/user-attachments/assets/47c1625c-312e-4576-a187-b715ec261861)
+
+AAAA-tietue yhdistää domainnimen IPv6-osoitteen kanssa, kuten A-tietue tekee IPv4-osoitteen kanssa (Cloudfare f). Kuten host-hakujen kanssa kävi ilmi, näistä kolmesta osoitteesta vain googlella oli käytössä IPv6-osoitteet, jonka vuoksi edellisten dig-komentojen tuloksena ei ilmennyt vielä AAAA-tietueita. Vastauksen IPv6-osoite täsmäsi host-komennolla löytyneeseen osoitteeseen.
+Myös MX-tietueen prioriteettinumero 10 ja osoite täsmäsi host-komennon vastaukseen.
+
+HTTPS-tietueen rivin arvo kertoo ensin prioriteetin, joka tässä tapauksessa on numero 1. Piste ilmaisee hostin, jos se on sama kuin haettu domainnimi. ````alpn="h2,h3"```` tarkentaa protokollan version, tässä tapauksessa siis HTTP2 ja HTTP3 -protokollat ovat mahdollisia käyttää. HTTPS-tietue tarjoaa tietoa turvallisen yhteyden muodostamiseen, ja sen käyttö vähentää yhteyden muodostamisessa pyyntöjen määrää, mikä nopeuttaa ja sujuvoittaa yhteyden muodostamista. (Gcore docs.)
+
+Kuten edellisessä tehtävävaiheessa, tässäkin haussa saatiin tuloksena SOA eli start of authority, joka ilmaisee tietoa ylläpitäjästä. NS-tietueita löytyi neljä, eli enemmän kuin edellisissä hauissa, mikä vaikuttaa loogiselta, kun kyseessä on iso toimija. 
+
+Aikaa kului 40 minuuttia.
 
 
+#### Kaiken kaikkiaan tehtäviin kului aikaa noin 8,5 tuntia, poislukien raportin muotoilu.
 
 ### Lähteet
 
@@ -323,4 +338,8 @@ Cloudfare c, What is a DNS TXT record? https://www.cloudflare.com/learning/dns/d
 Cloudfare d, What is a DNS MX record? https://www.cloudflare.com/learning/dns/dns-records/dns-mx-record/. Luettu 22.2.2025.
 
 Cloudfare e, What is a DNS SOA record? https://www.cloudflare.com/learning/dns/dns-records/dns-soa-record/. Luettu 22.2.2025.
+
+Cloudfare f, DNS AAAA record: https://www.cloudflare.com/learning/dns/dns-records/dns-aaaa-record/. Luettu 23.2.2025.
+
+Gcore docs, What is an HTTPS record and how is it configured? https://gcore.com/docs/dns/dns-records/what-is-an-https-record-and-how-is-it-configured. Luettu 23.2.2025.
 
