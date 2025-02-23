@@ -291,7 +291,7 @@ Aikaa kului 50 minuuttia.
 
 #### dig google.com 
 
-Aloitin tämän tehtävän 23.2.2025 klo 14.15. Kokeilin ensimmäisenä yhdistettyä komentoa ````dig google.com ANY +trace````, mutta hakutulos oli jokseenkin sekava tulkita. Käytin siis jälleen ensin komentoa ````dig google.com ANY````. Hakutuloksia löytyi 9, ja uusina termeinä tietueiden sarakkeesta löytyi AAAA ja HTTPS.
+Aloitin tämän tehtävän 23.2.2025 klo 14.15. Käytin haun tekemiseksi komentoa ````dig google.com ANY````. Hakutuloksia löytyi 9, ja uusina termeinä tietueiden sarakkeesta löytyi ````AAAA```` ja ````HTTPS````.
 
 ![image](https://github.com/user-attachments/assets/47c1625c-312e-4576-a187-b715ec261861)
 
@@ -305,7 +305,7 @@ Kuten edellisessä tehtävävaiheessa, tässäkin haussa saatiin tuloksena SOA e
 Aikaa kului 40 minuuttia.
 
 
-#### Kaiken kaikkiaan tehtäviin kului aikaa noin 8,5 tuntia, poislukien raportin muotoilu.
+#### Kaiken kaikkiaan tehtäviin kului aikaa noin 8,5 tuntia, johon ei ole laskettu raportin muotoiluun kulunutta aikaa.
 
 ### Lähteet
 
