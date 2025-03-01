@@ -45,7 +45,7 @@ Lähde: The Apache Software Foundation 2025, SSL/TLS Strong Encryption: How-To: 
 
 ## a) TLS-sertifikaatin hankkiminen ja asentaminen
 
-Tarkoituksena on hankkia omalle virtaalipalvelimelleni ilmainen TLS-sertifikaatti Let's Encryptilta, ja osoittaa sen toimivuus. Aloitin tehtävän tekemisen 1.3.2025 klo 11.35.
+Aloitin tehtävän tekemisen 1.3.2025 klo 11.35. Tarkoituksena on hankkia omalle virtaalipalvelimelleni ilmainen TLS-sertifikaatti Let's Encryptilta, ja osoittaa sen toimivuus. 
 
 Aluksi kirjauduin SSH:lla virtuaalipalvelimelle ja käynnistin palvelimen uudelleen komennolla ````sudo systemctl restart apache2````, ja testasin nettisivun toimivuutta varmistaakseni toimivan alkutilanteen. Kumpikin toimi ongelmitta. Asensin legon komennolla ````sudo apt-get install lego````. Lego on Let's Encryptin asiakasohjelma ja kirjasto, jolla hankitaan TLS-sertifikaatti domainille (Fernandez 2025). 
 
@@ -140,15 +140,15 @@ Karvinen 2025, Linux Palvelimet 2025 alkukevät, Läksyt, h6 Salataampa: https:/
 
 ## b) TLS:n testaus
 
-Tarkoituksena oli testata oman sivun TLS laadunvarmistustyökalulla. Tehtävänannossa mainittiin SSL Labs, joten päätin hyödyntää sitä. Syötin hakukenttään verkkotunnukseni https-muodossa. Kokonaistulos oli A eli testaus onnistui yleisellä tasolla hyvin, mutta muutamia puutteitakin ilmeni.
+Aloitin tehtävän 1.3.2025 klo 13. Tarkoituksena oli testata oman sivun TLS laadunvarmistustyökalulla. Tehtävänannossa mainittiin SSL Labs, joten päätin hyödyntää sitä. Syötin hakukenttään verkkotunnukseni https-muodossa. Kokonaistulos oli A eli testaus onnistui yleisellä tasolla hyvin, mutta muutamia puutteitakin ilmeni. 
 
 ![kuva](https://github.com/user-attachments/assets/64623340-00d4-44a5-be33-be37f63d53dc)
 
-DNS CAA:ta ei ollut. 
+Ensimmäinen huomautus oli, ettei DNS CAA:ta ollut. CAA on DNS-tietue, joka sallii sivuston omistajan määritellä, mitkä CA:t eli sertifikaattien myöntäjät ovat sallittu myöntämään omalle domainille sertifikaatin. Oletuksena jokainen julkinen CA saa myöntää sertifikaatteja kaikille domainnimille julkisessa DNS:ssä, kunhan ne osoittavat hallinnoivansa kyseistä domainia. (Let's Encrypt 2023.) CAA-tiedot pitäisi lisätä domainille erikseen, jos haluaisin rajoittaa hyväksyttyjä CA:ita. CAA:n käyttö vähentäisi kaiken kaikkiaan hyväksyttyjen sertifikaattien myöntäjien määrää, mikä vähentäisi myös potentiaalisten väärinkäyttäjien määrää. En kuitenkaan lähtenyt vielä lisäämään sivustolleni CAA:ta, 
 
 ![kuva](https://github.com/user-attachments/assets/fc5b243a-c7e4-4b72-9823-4b15e825843b)
 
-Kohdassa Cipher Suites muutama kohta oli merkitty heikoksi.
+Kohdassa Cipher Suites muutama kohta oli merkitty heikoksi, 
 
 ![kuva](https://github.com/user-attachments/assets/9c863a79-bdf2-4977-beac-36b6a1310df8)
 
@@ -158,9 +158,8 @@ Kättelyissä Chrome 49 antoi ilmoituksen:
 
 
 
-
-
 ### Lähteet
 
+Let's Encrypt 2023, Certificate Authority Authorization (CAA): https://letsencrypt.org/docs/caa/. Luettu 1.3.2025.
 
 ## c) Vapaaehtoinen: Weppilomake
