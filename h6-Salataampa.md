@@ -140,26 +140,100 @@ Karvinen 2025, Linux Palvelimet 2025 alkukevät, Läksyt, h6 Salataampa: https:/
 
 ## b) TLS:n testaus
 
-Aloitin tehtävän 1.3.2025 klo 13. Tarkoituksena oli testata oman sivun TLS laadunvarmistustyökalulla. Tehtävänannossa mainittiin SSL Labs, joten päätin hyödyntää sitä. Syötin hakukenttään verkkotunnukseni https-muodossa. Kokonaistulos oli A eli testaus onnistui yleisellä tasolla hyvin, mutta muutamia puutteitakin ilmeni. 
+Aloitin tehtävän 1.3.2025 klo 13. Tarkoituksena oli testata oman sivun TLS laadunvarmistustyökalulla. Tehtävänannossa mainittiin SSL Labs, joten päätin hyödyntää sitä. Syötin hakukenttään verkkotunnukseni https-muodossa. Kokonaistulos oli A eli testaus onnistui yleisellä tasolla hyvin, mutta muutamia puutteitakin ilmeni. Kirjasin nämä ylös ja palasin raportin kirjoittamiseen 2.3.2025 klo 14.15.
 
 ![kuva](https://github.com/user-attachments/assets/64623340-00d4-44a5-be33-be37f63d53dc)
 
-Ensimmäinen huomautus oli, ettei DNS CAA:ta ollut. CAA on DNS-tietue, joka sallii sivuston omistajan määritellä, mitkä CA:t eli sertifikaattien myöntäjät ovat sallittu myöntämään omalle domainille sertifikaatin. Oletuksena jokainen julkinen CA saa myöntää sertifikaatteja kaikille domainnimille julkisessa DNS:ssä, kunhan ne osoittavat hallinnoivansa kyseistä domainia. (Let's Encrypt 2023.) CAA-tiedot pitäisi lisätä domainille erikseen, jos haluaisin rajoittaa hyväksyttyjä CA:ita. CAA:n käyttö vähentäisi kaiken kaikkiaan hyväksyttyjen sertifikaattien myöntäjien määrää, mikä vähentäisi myös potentiaalisten väärinkäyttäjien määrää. En kuitenkaan lähtenyt vielä lisäämään sivustolleni CAA:ta, 
+### DNS CAA
+
+Ensimmäinen huomautus oli, ettei DNS CAA:ta ollut. CAA on DNS-tietue, joka sallii sivuston omistajan määritellä, mitkä CA:t eli sertifikaattien myöntäjät ovat sallittu myöntämään omalle domainille sertifikaatin. Oletuksena jokainen julkinen CA saa myöntää sertifikaatteja kaikille domainnimille julkisessa DNS:ssä, kunhan ne osoittavat hallinnoivansa kyseistä domainia. (Let's Encrypt 2023.) CAA-tiedot pitäisi lisätä domainille erikseen, jos haluaisin rajoittaa hyväksyttyjä CA:ita. CAA:n käyttö vähentäisi kaiken kaikkiaan hyväksyttyjen sertifikaattien myöntäjien määrää, mikä vähentäisi myös potentiaalisten väärinkäyttäjien määrää. En kuitenkaan lähtenyt vielä lisäämään sivustolleni CAA:ta, mutta mikäli jatkan sivuston kehittämistä ja ylläpitämistä tämän kurssin jälkeen, ajattelen että CAA:n lisääminen olisi pieni hyödyllinen teko tietoturvan parantamiseksi.
 
 ![kuva](https://github.com/user-attachments/assets/fc5b243a-c7e4-4b72-9823-4b15e825843b)
 
-Kohdassa Cipher Suites muutama kohta oli merkitty heikoksi, 
+### Cipher Suites
+
+Kohdassa Cipher Suites muutama kohta oli merkitty heikoksi. Cipher suite tarkoittaa algoritmien sarjaa, jolla verkkoyhteys suojataan, ja sarjat yleensä käyttävät tässä TLS:ää (Wikipedia 2024). Heikkoudet ilmenivät testissä TLS 1.2:n alla, joka on nykyistä TLS 1.3:a edeltävä versio protokollasta. TLS 1.2 on ollut käytössä vuodesta 2008 ja TLS 1.3 vuodesta 2018 asti. (Wikipedia 2025.) Vanhemman version jotkin salausmekanismit ovat siis vanhentuneita, eivätkä riittävän tehokkaita. Testituloksen perusteella yhteyden salaamisessa on kuitenkin käytössä molemmat versiot.
 
 ![kuva](https://github.com/user-attachments/assets/9c863a79-bdf2-4977-beac-36b6a1310df8)
 
-Kättelyissä Chrome 49 antoi ilmoituksen:
+Poistamalla TLS 1.2 ilmoitetut heikkoudet ehkä saataisiin pois, joten päätin kokeilla lisätä konfiguraatiotiedostoon rivin ````SSLProtocol -all +TLSv1.3```` (Rahul 2024), joka poistaisi vanhat versiot käytöstä ja ottaisi käyttöön vain TLS 1.3:n. Tein testin uudestaan SSL Labsin sivulla ja tulokset muuttuivat.
+
+![kuva](https://github.com/user-attachments/assets/674d5a9e-5759-4567-bff9-30b48ea8bb5a)
+
+Nyt samoja heikkousilmoituksia ei ollut, mutta TLS 1.2 otsikko oli silti samalla keltaisella värillä korostettu. Myös kättelyissä ilmeni uusia virheilmoituksia liittyen protokollaversioon tietyillä selaimilla, ei yhteydenmuodostus ei onnistu joillakin vanhoilla selaimilla. Muokkasin konfiguraatiotiedoston SSLProtocol riviä seuraavanlaiseksi: ````SSLProtocol -all +TLSv1.2 +TLSv1.3````, ja kokeilin onko tällä vaikutusta TLS 1.2:n otsikon väriin. Käynnistin palvelimen uudestaan, tyhjensin selaimen välimuistin ja tein testin uudelleen, mutta tulos ei muuttunut.
+
+Päätin ottaa TLS 1.2:n lopulta pois määrityksistä ja jättää vain TLS 1.3:n, sillä ymmärrykseni mukaan TLS 1.3 tarjoaa parhaat tietoturvaominaisuudet ja on nopeampi (Wikipedia 2024). TLS 1.2:n voisi mielestäni sallia, jos sivuston käyttäjillä olisi ehdoton tarve asioida sivustolla, mutta heidän käyttöjärjestelmänsä eivät tukisi 1.3:sta eikä niitä olisi mahdollista päivittää uusimpaan versioon. 
+
+### Handshake Simulation
+
+Kättelyissä ilmeni ensin vain yksi virheilmoitus Chrome 49:n kohdalla:
 
 ![kuva](https://github.com/user-attachments/assets/529cabea-4c77-418b-bbe9-ce1a0db8ee7e)
 
+Kun muokkasin käytettyä TLS-versiota, ilmoituksia tuli kolme uutta: 
 
+![kuva](https://github.com/user-attachments/assets/1bc07636-7add-4023-9212-4a6b711429ab)
+
+Vanhoilla selaimilla turvallisen yhteyden muodostus ei siis onnistu sivustolleni, eikä myöskään vanha OpenSSL-versio ole tuettu. OpenSSL on avoimen lähdekoodin ohjelmistokirjasto, jota sovellukset käyttävät salattujen yhteyksien luomisessa. Virheilmoituksen version 1.1.0 tuki on loppunut vuonna 2019, ja nykyään käytössä on numerolla 3 alkavat versiot, uusimpana 3.4.0. (Wikipedia 2025.) Mielestäni virheilmoituksiin voi siis jättää reagoimatta, sillä versiot ovat niin vanhoja, ettei niillä ole varmastikaan suurta käyttöä, enkä näin ollen koe että näillä pitäisi olla mahdollista muodostaa salattu yhteys sivustolleni.
+
+Testissä oli myös luettelo lukuisia eri clienteja joilla kättelysimulointia ei tehty, syynä "Protocol mismatch" eli ei-yhteensopiva protokolla. Tämä luultavasti liittyy ylempään vaiheeseen, jossa sallin vain TLS 1.3:n käytön. Kaikki listalla olleet kohteet olivat jälleen vanhoja versioita, joten mielestäni ei haittaa, vaikka simulointia ei voitu tehdä.
+
+![kuva](https://github.com/user-attachments/assets/7af9d202-885b-4606-a69e-3fd7b3cc0436)
+![kuva](https://github.com/user-attachments/assets/1f2101af-bd4d-4fd2-88fc-6d56d36a665e)
+![kuva](https://github.com/user-attachments/assets/0a05ddaa-6ed8-408d-a738-93c23d4b0b2c)
+
+Tehtävään ja raportointiin kului aikaa 1h 30min.
 
 ### Lähteet
 
-Let's Encrypt 2023, Certificate Authority Authorization (CAA): https://letsencrypt.org/docs/caa/. Luettu 1.3.2025.
+Karvinen 2025, Linux Palvelimet 2025 alkukevät, Läksyt, h6 Salataampa: https://terokarvinen.com/linux-palvelimet/#h6-salataampa. Luettu 2.3.2025.
+
+Qualys, SSL Labs, SSL Server Test: https://www.ssllabs.com/ssltest/index.html. Käytetty 1.3. ja 2.3.2025.
+
+Let's Encrypt 2023, Certificate Authority Authorization (CAA): https://letsencrypt.org/docs/caa/. Luettu 2.3.2025.
+
+Wikipedia 2024, Cipher suite: https://en.wikipedia.org/wiki/Cipher_suite. Luettu 2.3.2025.
+
+Rahul 2024, Techadmin.net, How to enable TLS 1.3, TLS1.2 only in Apache: https://tecadmin.net/enable-tls-version-apache/. Luettu 2.3.2024.
+
+Wikipedia 2025, OpenSSL: https://en.wikipedia.org/wiki/OpenSSL. Luettu 2.3.2025.
+ 
 
 ## c) Vapaaehtoinen: Weppilomake
+
+Tarkoituksena oli tehdä weppilomake, jossa on käyttäjätunnus ja salasana, ja käyttää salaamatonta http-yhteyttä. Liikennettä tuli siepata ja siitä tuli tehdä havaintoja.
+
+Aloitin HTML-lomakkeen luomisen 2.3.2025 klo 15.40. Käytin apuna Geeks for geeks -sivuston ohjetta (Geeks for geeks 2024). Muokkasin HTML-koodin suoraan palvelimella index.html-tekstitiedostoon.
+
+![kuva](https://github.com/user-attachments/assets/759b7ded-8060-49db-9889-101c31d3b096)
+
+Lomake ilmestyi heti tallentamisen jälkeen näkyviin sivustolleni.
+
+![kuva](https://github.com/user-attachments/assets/d5e4b75c-3113-4628-8bf7-6fee1cdb99d1)
+
+### Wireshark
+
+Sieppasin liikennettä ensin Wiresharkilla, joka oli jo asennettuna tietokoneelleni. Valitsin interfaceksi Ethernetin, koska arvelin selaimeni verkkoliikenteen tapahtuvan siellä. Aloitin tallennuksen, siirryin sivustolleni http-yhteydellä, syötin lomakkeelle käyttäjätunnuksen "käyttis" ja salasanan "salasana", ja valitsin "kirjaudu sisään". Lopetin tallennuksen ja lähdin perkaamaan tallennettuja paketteja. Nopeasti silmiini osui HTTP-paketti, jossa luki selkeästi (ä-kirjainta lukuunottamatta) syöttämäni tiedot. 
+
+![kuva](https://github.com/user-attachments/assets/66a5138a-d6ef-43a6-8126-ec6d216912be)
+
+### Ngrep
+
+Kokeilin myös ngrepiä. Hain saatavilla olevat päivitykset komennolla ````sudo apt-get update```` ja asensin ngrepin ````sudo apt-get install ngrep````. Löysin ensin netistä komennon ````sudo ngrep -q '^GET .* HTTP/1.1```` (Geeks for geeks 2021), jolla piti pystyä sieppaamaan paketteja nettiselaimelta, mutta se ei tuottanut mitään vastausta. Kokeilin aikaa säästääkseni Copilotin tekoälyä, ja kysyin miksei komento syötä mitään vastausta. Sain vastaukseksi tarkistetun komennon ````sudo ngrep -d any '^GET .* HTTP/1.1'````. Copilotin mukaan ````-d any```` tarkoittaa, että ngrep kuuntelee kaikkia saatavilla olevia verkkoliitäntöjä, ja kohdan ````any```` olisi voinut korvata oikealla verkkoliitännällä. En kuitenkaan tiennyt oikeaa liitäntää, joten jätin komennon tuollaseksi.
+
+Syötin komennon ja kävin antamassa lomakkeella taas käyttäjätunnuksen ja salasanan. Tiedot päivittyivät terminaaliin heti, ja jälleen molemmat syötetyt tiedot näkyivät selvällä tekstillä tulosteessa. Näppäinyhdistelmä ````Ctrl + c```` lopetti tallentamisen terminaalissa.
+
+![kuva](https://github.com/user-attachments/assets/8e67896b-9032-4314-8240-6fd54345f5a6)
+
+### Tietoturvasta
+
+Havaintojeni perusteella salaamaton yhteys (http) lähettää lomakkeelle annetut tiedot sellaisenaan selvässä tekstimuodossa ilman mitään salausta. Tietojen näkyminen selkeänä tekstinä mahdollistaa niiden kaappaamisen ja käyttämisen esimerkiksi identiteettivarkauteen. Tämän vuoksi on tärkeää huolehtia sivuston yhteyksien salaamisesta, jos sivustolla on tarkoitus käsitellä, lähettää ja/tai vastaanottaa käyttäjien tietoja. Http-yhteys ei ole ollenkaan tietoturvallinen vaihtoehto tähän, vaan sen sijaan tulee käyttää https:ää, johon tämänkin harjoituksen aikana on tutustuttu. Sertifikaatin hankkiminen luotetulta myöntäjältä oli helppoa ja ilmaista, joten hyviä perusteluja https:n käyttämättä jättämiseen ei ihan heti tule mieleen. 
+
+Tähän tehtävävaiheeseen raportointeineen kului aikaa 1h.
+
+### Lähteet
+
+Geeks for geeks 2024, HTML Login Form: https://www.geeksforgeeks.org/html-login-form/. Luettu 2.3.2025.
+
+Geeks for geeks 2021, Ngrep – Network Packet Analyzer for Linux: https://www.geeksforgeeks.org/ngrep-network-packet-analyzer-for-linux/. Luettu 2.3.2025.
+
