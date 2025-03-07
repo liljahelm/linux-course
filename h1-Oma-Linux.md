@@ -1,5 +1,7 @@
 # h1 Oma Linux
 
+Kaikki harjoitukset perustuvat tehtävänantoihin kevään 2025 Linux-palvelimet -kurssin sivustolla: https://terokarvinen.com/linux-palvelimet/.
+
 ## x) Tiivistelmät
 
 #### Raportin kirjoittaminen
