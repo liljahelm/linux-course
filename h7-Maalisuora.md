@@ -46,37 +46,41 @@ Karvinen 2018, Hello World Python3, Bash, C, C++, Go, Lua, Ruby, Java – Progra
 
 ## Lähdeviitteet
 
-Tarkistin kaikkien raporttien lähdeviitteet 8.3.2025 ja lisäsin muutamaan ensimmäiseen raporttiin maininnan kurssin sivustosta.
+Tarkistin kaikkien raporttien lähdeviitteet 8.3.2025 ja lisäsin puuttuvat viittaukset.
  
 
 ## Uusi komento
 
 Tarkoituksena oli luoda uusi komento niin, että kaikki käyttäjät voivat ajaa sitä. Aloitin tehtävän tekemisen 8.3.2025 klo 12.30.
 
-Tarkastelin Shell Scripting -artikkelia (Karvinen 2007) ja päätin luoda samankaltaisen komennon. Loin ensin tiedoston nimeltä ````listaa````, ja lisäsin sinne komennot ````ls```` ja ````pwd```` lyhyiden lauseiden kera.
+Tarkastelin Shell Scripting -artikkelia (Karvinen 2007) ja päätin luoda samankaltaisen komennon. Loin ensin tiedoston nimeltä ````listaa````, ja lisäsin sinne komennot ````ls```` ja ````pwd```` lyhyiden lauseiden kera. Lisäsin tekstitiedoston alkuun ````#!/bin/bash````, jotta käyttöjärjestelmä osaa käyttää bashia komennon tulkitsemiseen (Geeks for Geeks 2022). Käytin komentoa ````sudo cp listaa /usr/local/bin/````, jotta tekemäni komento toimisi muissakin hakemistoissa (Karvinen 2007).
 
-![kuva](https://github.com/user-attachments/assets/a7696d36-715e-488e-8014-2168f37e84c2)
+![kuva](https://github.com/user-attachments/assets/ad564aea-08ba-4d1a-bf23-ccc24f4858a5)
 
-Komento toimi samassa hakemistossa ollessa, mutta ei muuten.
+Tässä kohtaa luulin aluksi, että komento toimii kaikissa hakemistoissa, mutta myöhemmin huomasin, että olin unohtanut antaa ajo-oikeudet komennolle eikä se enää toiminut ollenkaan. Korjasin tilanteen.
 
-![kuva](https://github.com/user-attachments/assets/6f8cf380-83ad-4249-ba9d-3d6e92003e06)
+![kuva](https://github.com/user-attachments/assets/9fd78b3c-0e40-4059-8684-ec66966d2b92)
 
-Käytin komentoa ````sudo cp listaa /usr/local/bin/````, jotta tekemäni komento toimisi muissakin hakemistoissa (Karvinen 2007). Kokeilin komentoa hakemistossa Documents, ja se toimi.
+Nyt komennon pystyi ajamaan omalla käyttäjällä sekä testikäyttäjällä.
 
-![kuva](https://github.com/user-attachments/assets/9f3a1268-1dd2-4822-a90c-584c34804bf4)
+![kuva](https://github.com/user-attachments/assets/5126ea3a-053d-4caa-a599-2e2b94dd7d2f)
 
-Loin uuden testikäyttäjän komennolla ````sudo adduser````, ja testasin listaa-komentoa myös tällä. Komento toimi.
+![kuva](https://github.com/user-attachments/assets/7f627592-2200-486b-a2f0-7bfeabfc1bba)
 
-![kuva](https://github.com/user-attachments/assets/434c8d08-a38e-4052-8926-3a397717a936)
+Omalla käyttäjälläni komento toimi myös senhetkisessä hakemistossa komennolla ````./listaa````, mutta testikäyttäjällä ei, vaikka tiedostolla oli ajo-oikeudet.
 
-Muistin tässä kohtaa, etten muistanut antaa execute-oikeuksia tiedostolle, mutta siitä huolimatta se toimi.
+![kuva](https://github.com/user-attachments/assets/0c369893-ca8a-43c9-8dcd-dc18151ff3de)
 
-Aikaa kului tehtävään ja raportointiin 30min.
+Polussa siis todennäköisesti on joku ongelma, mutta tämä jäi selvittämättä. Testaaja kuitenkin pystyi ajamaan komennon muodossa ````listaa````.
+
+Aikaa kului tehtävään ja raportointiin 1h.
 
 
 ### Lähteet
 
 Karvinen 2007, Shell Scripting: https://terokarvinen.com/2007/12/04/shell-scripting-4/. Luettu 8.3.2025.
+
+Geeks for Geeks 2022, Shell Scripting – Define #!/bin/bash: https://www.geeksforgeeks.org/shell-scripting-define-bin-bash/. Luettu 9.3.2025.
 
 
 ## Vanha arvioitava labraharjoitus, kevät 2024
@@ -85,28 +89,33 @@ Tarkoituksena oli ratkaista vanha arvioitava labraharjoitus soveltuvin osin. Val
 
 ### Alkutoimet
 
-Ensin loin itselleni uuden tyhjän virtuaalikoneen ja asensin Debian 64-bitin samalla tavalla, kuin harjoituksessa h1 (Tatti 2025). Lisäsin myös tämän koneen virtuaalimuistia 128 megatavuun, jotta resoluutio paranisi (Pasi S. 2025).
+Ensin loin itselleni uuden tyhjän virtuaalikoneen ja asensin Debian 64-bitin samalla tavalla, kuin harjoituksessa h1 (Tatti 2025). Lisäsin myös tämän koneen virtuaalimuistia 128 megatavuun, jotta koneen toiminta ja kuvanlaatu paranisi (Pasi S. 2025).
 
 Loin kotihakemistoon kansion raporttia varten polkuun /home/liljaharj/report/index.md.
 
 ### b) Tiivistelmä
 
+Vain oma käyttäjäni pystyy tarkastelemaan ja muokkaamaan raporttia, eli oikeudet on vain käyttäjällä read ja write.
 
-### c) Suojaa raportti Linux-oikeuksilla niin, että vain oma käyttäjäsi pystyy katselemaan raporttia
+Howdy toimii sellaisenaan kaikilla käyttäjillä kaikissa hakemistoissa, mutta testaaja-käyttäjällä ei muodossa ````./howdy````.
 
-Poistin ryhmältä ja muilta luku-, kirjoitus- ja ajamisoikeudet kansiosta "report".
+Koneen ip-osoite avaa paikallisesti AI Kakosen nettisivun. Kotihakemistossa ei ole sivustoon liittyen rootin omistamia tiedostoja. Index-tiedoston muokkaamiseen ei tarvita sudoa.
 
-![kuva](https://github.com/user-attachments/assets/4cdc7ee1-5cc5-4a35-8b5c-d1125c9149e1)
+Ssh-palvelin on asennettuna ja testikäyttäjän kirjautuminen localhostille onnistuu ssh:lla ilman salasanaa.
+
+Kurssitoteutuksellamme ei käsitelty Djangoa, joten jätin kaksi viimeistä osiota tekemättä.
+
+
+### c) Ei kolmea sekoseiskaa
+
+![kuva](https://github.com/user-attachments/assets/d9f69142-6faf-4560-93c5-3357bb30e488)
 
 
 ### d) 'howdy'
 
-![kuva](https://github.com/user-attachments/assets/35d19a4b-de8b-47fd-81a2-fb588ebb9380)
-
-![kuva](https://github.com/user-attachments/assets/ba83f60d-dc5c-4b7f-b472-bf4225259eaa)
-
 ![kuva](https://github.com/user-attachments/assets/430dc241-4382-4be9-8fb0-fe44e7939d2e)
 
+![kuva](https://github.com/user-attachments/assets/ba83f60d-dc5c-4b7f-b472-bf4225259eaa)
 
 
 ### e) Etusivu uusiksi
@@ -118,13 +127,13 @@ Poistin ryhmältä ja muilta luku-, kirjoitus- ja ajamisoikeudet kansiosta "repo
 ![kuva](https://github.com/user-attachments/assets/7ad1f04f-9c58-4149-bab8-8c2172bb44bc)
 
 
-oikeudet:
+Oikeudet:
 
 ![kuva](https://github.com/user-attachments/assets/592f49e7-652e-4ab8-a115-fc14c8baf8fb)
 
 ![kuva](https://github.com/user-attachments/assets/a8e1b10b-88b3-42ad-9c27-818cdaef6e8b)
 
-
+ 
 ![kuva](https://github.com/user-attachments/assets/8ce88951-9edb-476b-9ec4-f05890c3a473)
 
 ![kuva](https://github.com/user-attachments/assets/55aa77c6-7195-4126-8d50-2d7445f97133)
@@ -132,16 +141,17 @@ oikeudet:
 ![kuva](https://github.com/user-attachments/assets/ebcb7d73-15f1-4ced-a433-b68630542200)
 
 
-Valmisteluineen 1h 45min
-
-
-
 ### g) Salattua hallintaa
+
+
+![kuva](https://github.com/user-attachments/assets/7968f78e-c220-4731-a9df-da1801143077)
+
+![kuva](https://github.com/user-attachments/assets/de47fdcc-c579-407e-820e-2445fcaf56cd)
+
 
 ### h) Djangon lahjat ja h) Tuotantopropelli
 
-Kurssitoteutuksellamme ei käsitelty Djangoa, joten jätin nämä osiot tekemättä.
-
+Ei tehty.
 
 
 
@@ -152,7 +162,7 @@ Karvinen 2024, Final Lab for Linux Palvelimet 2024 Spring: https://terokarvinen.
 
 Tatti 2025, h1 Oma Linux: https://github.com/liljahelm/linux-course/blob/b462973283c458d2c4de0f26776fffd783271c8e/h1-Oma-Linux.md. Luettu 9.3.2025.
 
-Pasi S. 2025, h1 linux-asennus virtuaalikoneelle: https://github.com/PasiS1337/linux-course/blob/main/h1-linux-asennus-virtuaalikoneelle.md
+Pasi S. 2025, h1 linux-asennus virtuaalikoneelle: https://github.com/PasiS1337/linux-course/blob/main/h1-linux-asennus-virtuaalikoneelle.md. Luettu 9.3.2025.
 
-
+Linuxize 2019, How to Setup Passwordless SSH Login: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/. Luettu 9.3.2025.
 
