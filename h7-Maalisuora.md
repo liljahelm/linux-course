@@ -2,7 +2,7 @@
 
 ## Alustus
 
-Harjoitukset a) ja c) on tehty aiemmin kurssilla luodulla virtuaalikoneella, johon asennettiin käyttöjärjestelmäksi Debian 64-bit. Virtuaalikoneella on 60 Gt virtuaalinen kovalevy ja muistia 4000 Mt. Virtual memoryä lisättiin 128 megatavuun, jonka jälkeen käyttö nopeutui. Käytän virtuaalikonetta VirtualBoxilla (versio 7.1.4) omalla itse kootulla pc:llä (käyttöjärjestelmä Windows 11 64-bit, prosessori Intel i3-9100F, näytönohjain Asus GTX 1060 3GB, emolevy ASRock H310CM-HDV, RAM 8 GB, SSD 500GB).
+Harjoitukset a) - c) on tehty aiemmin kurssilla luodulla virtuaalikoneella, johon asennettiin käyttöjärjestelmäksi Debian 64-bit. Virtuaalikoneella on 60 Gt virtuaalinen kovalevy ja muistia 4000 Mt. Virtual memoryä lisättiin 128 megatavuun, jonka jälkeen käyttö nopeutui. Käytän virtuaalikonetta VirtualBoxilla (versio 7.1.4) omalla itse kootulla pc:llä (käyttöjärjestelmä Windows 11 64-bit, prosessori Intel i3-9100F, näytönohjain Asus GTX 1060 3GB, emolevy ASRock H310CM-HDV, RAM 8 GB, SSD 500GB).
 
 Virtuaalipalvelin on vuokrattu DigitalOcean-palvelusta, ja palvelimella on 1 Gt keskusmuistia ja 25 Gt:n SSD-levy.
 
@@ -44,12 +44,12 @@ Linux for Devices, How to Run a Command-Line Java Program on Linux? https://www.
 Karvinen 2018, Hello World Python3, Bash, C, C++, Go, Lua, Ruby, Java – Programming Languages on Ubuntu 18.04: https://terokarvinen.com/2018/hello-python3-bash-c-c-go-lua-ruby-java-programming-languages-on-ubuntu-18-04/. Luettu 7.3.2025.
 
 
-## Lähdeviitteet
+## b) Lähdeviitteet
 
 Tarkistin kaikkien raporttien lähdeviitteet 8.3.2025 ja lisäsin puuttuvat viittaukset.
  
 
-## Uusi komento
+## c) Uusi komento
 
 Tarkoituksena oli luoda uusi komento niin, että kaikki käyttäjät voivat ajaa sitä. Aloitin tehtävän tekemisen 8.3.2025 klo 12.30.
 
@@ -83,13 +83,13 @@ Karvinen 2007, Shell Scripting: https://terokarvinen.com/2007/12/04/shell-script
 Geeks for Geeks 2022, Shell Scripting – Define #!/bin/bash: https://www.geeksforgeeks.org/shell-scripting-define-bin-bash/. Luettu 9.3.2025.
 
 
-## Vanha arvioitava labraharjoitus, kevät 2024
+## d) Vanha arvioitava labraharjoitus, kevät 2024
 
 Tarkoituksena oli ratkaista vanha arvioitava labraharjoitus soveltuvin osin. Valitsin tähän kurssin tehtäväsivulta kevään 2024 harjoituksen, sillä ensimmäiset tehtävät näyttivät käsittelevän myös tällä kurssitoteutuksella käsiteltyjä asioita. Aloitin tehtävän tekemisen 9.3.2025 klo 8.15. 
 
 ### Alkutoimet
 
-Ensin loin itselleni uuden tyhjän virtuaalikoneen ja asensin Debian 64-bitin samalla tavalla, kuin harjoituksessa h1 (Tatti 2025). Lisäsin myös tämän koneen virtuaalimuistia 128 megatavuun, jotta koneen toiminta ja kuvanlaatu paranisi (Pasi S. 2025).
+Ensin loin itselleni uuden tyhjän virtuaalikoneen ja asensin Debian 64-bitin samalla tavalla, kuin harjoituksessa h1 (Tatti 2025). Lisäsin myös tämän koneen virtuaalimuistia 128 megatavuun, jotta koneen toiminta nopeutui (Pasi S. 2025).
 
 Loin kotihakemistoon kansion raporttia varten polkuun /home/liljaharj/report/index.md.
 
@@ -99,7 +99,7 @@ Vain oma käyttäjäni pystyy tarkastelemaan ja muokkaamaan raporttia, eli oikeu
 
 Howdy toimii sellaisenaan kaikilla käyttäjillä kaikissa hakemistoissa, mutta testaaja-käyttäjällä ei muodossa ````./howdy````.
 
-Koneen ip-osoite avaa paikallisesti AI Kakosen nettisivun. Kotihakemistossa ei ole sivustoon liittyen rootin omistamia tiedostoja. Index-tiedoston muokkaamiseen ei tarvita sudoa.
+Koneen ip-osoite selaimessa avaa paikallisesti AI Kakosen nettisivun. Kotihakemistossa ei ole sivustoon liittyen rootin omistamia tiedostoja. Index-tiedoston muokkaamiseen ei tarvita sudoa.
 
 Ssh-palvelin on asennettuna ja testikäyttäjän kirjautuminen localhostille onnistuu ssh:lla ilman salasanaa.
 
@@ -152,7 +152,6 @@ Oikeudet:
 ### h) Djangon lahjat ja h) Tuotantopropelli
 
 Ei tehty.
-
 
 
 
