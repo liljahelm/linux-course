@@ -61,7 +61,7 @@ Komento toimi samassa hakemistossa ollessa, mutta ei muuten.
 
 ![kuva](https://github.com/user-attachments/assets/6f8cf380-83ad-4249-ba9d-3d6e92003e06)
 
-Käytin komentoa ````sudo cp lspwd /usr/local/bin/````, jotta tekemäni komento toimisi muissakin hakemistoissa (Karvinen 2007). Kokeilin komentoa hakemistossa Documents, ja se toimi.
+Käytin komentoa ````sudo cp listaa /usr/local/bin/````, jotta tekemäni komento toimisi muissakin hakemistoissa (Karvinen 2007). Kokeilin komentoa hakemistossa Documents, ja se toimi.
 
 ![kuva](https://github.com/user-attachments/assets/9f3a1268-1dd2-4822-a90c-584c34804bf4)
 
@@ -103,6 +103,11 @@ Poistin ryhmältä ja muilta luku-, kirjoitus- ja ajamisoikeudet kansiosta "repo
 
 ![kuva](https://github.com/user-attachments/assets/35d19a4b-de8b-47fd-81a2-fb588ebb9380)
 
+![kuva](https://github.com/user-attachments/assets/ba83f60d-dc5c-4b7f-b472-bf4225259eaa)
+
+![kuva](https://github.com/user-attachments/assets/430dc241-4382-4be9-8fb0-fe44e7939d2e)
+
+
 
 ### e) Etusivu uusiksi
 
@@ -110,9 +115,24 @@ Poistin ryhmältä ja muilta luku-, kirjoitus- ja ajamisoikeudet kansiosta "repo
 
 ![kuva](https://github.com/user-attachments/assets/8ced9437-bdfe-4534-9bfd-3b18915e76af)
 
-![kuva](https://github.com/user-attachments/assets/ec936ef8-bf6d-4f14-91bc-c30f4827bace)
+![kuva](https://github.com/user-attachments/assets/7ad1f04f-9c58-4149-bab8-8c2172bb44bc)
 
-Valmisteluineen 1h 20min
+
+oikeudet:
+
+![kuva](https://github.com/user-attachments/assets/592f49e7-652e-4ab8-a115-fc14c8baf8fb)
+
+![kuva](https://github.com/user-attachments/assets/a8e1b10b-88b3-42ad-9c27-818cdaef6e8b)
+
+
+![kuva](https://github.com/user-attachments/assets/8ce88951-9edb-476b-9ec4-f05890c3a473)
+
+![kuva](https://github.com/user-attachments/assets/55aa77c6-7195-4126-8d50-2d7445f97133)
+
+![kuva](https://github.com/user-attachments/assets/ebcb7d73-15f1-4ced-a433-b68630542200)
+
+
+Valmisteluineen 1h 45min
 
 
 
