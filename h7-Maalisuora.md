@@ -74,8 +74,65 @@ Muistin tässä kohtaa, etten muistanut antaa execute-oikeuksia tiedostolle, mut
 Aikaa kului tehtävään ja raportointiin 30min.
 
 
-
 ### Lähteet
 
 Karvinen 2007, Shell Scripting: https://terokarvinen.com/2007/12/04/shell-scripting-4/. Luettu 8.3.2025.
+
+
+## Vanha arvioitava labraharjoitus, kevät 2024
+
+Tarkoituksena oli ratkaista vanha arvioitava labraharjoitus soveltuvin osin. Valitsin tähän kurssin tehtäväsivulta kevään 2024 harjoituksen, sillä ensimmäiset tehtävät näyttivät käsittelevän myös tällä kurssitoteutuksella käsiteltyjä asioita. Aloitin tehtävän tekemisen 9.3.2025 klo 8.15. 
+
+### Alkutoimet
+
+Ensin loin itselleni uuden tyhjän virtuaalikoneen ja asensin Debian 64-bitin samalla tavalla, kuin harjoituksessa h1 (Tatti 2025). Lisäsin myös tämän koneen virtuaalimuistia 128 megatavuun, jotta resoluutio paranisi (Pasi S. 2025).
+
+Loin kotihakemistoon kansion raporttia varten polkuun /home/liljaharj/report/index.md.
+
+### b) Tiivistelmä
+
+
+### c) Suojaa raportti Linux-oikeuksilla niin, että vain oma käyttäjäsi pystyy katselemaan raporttia
+
+Poistin ryhmältä ja muilta luku-, kirjoitus- ja ajamisoikeudet kansiosta "report".
+
+![kuva](https://github.com/user-attachments/assets/4cdc7ee1-5cc5-4a35-8b5c-d1125c9149e1)
+
+
+### d) 'howdy'
+
+![kuva](https://github.com/user-attachments/assets/35d19a4b-de8b-47fd-81a2-fb588ebb9380)
+
+
+### e) Etusivu uusiksi
+
+![kuva](https://github.com/user-attachments/assets/e70a3727-dd53-47f3-9345-3ca42cbab746)
+
+![kuva](https://github.com/user-attachments/assets/8ced9437-bdfe-4534-9bfd-3b18915e76af)
+
+![kuva](https://github.com/user-attachments/assets/ec936ef8-bf6d-4f14-91bc-c30f4827bace)
+
+Valmisteluineen 1h 20min
+
+
+
+### g) Salattua hallintaa
+
+### h) Djangon lahjat ja h) Tuotantopropelli
+
+Kurssitoteutuksellamme ei käsitelty Djangoa, joten jätin nämä osiot tekemättä.
+
+
+
+
+
+### Lähteet
+
+Karvinen 2024, Final Lab for Linux Palvelimet 2024 Spring: https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/. Luettu 9.3.2024.
+
+Tatti 2025, h1 Oma Linux: https://github.com/liljahelm/linux-course/blob/b462973283c458d2c4de0f26776fffd783271c8e/h1-Oma-Linux.md. Luettu 9.3.2025.
+
+Pasi S. 2025, h1 linux-asennus virtuaalikoneelle: https://github.com/PasiS1337/linux-course/blob/main/h1-linux-asennus-virtuaalikoneelle.md
+
+
 
